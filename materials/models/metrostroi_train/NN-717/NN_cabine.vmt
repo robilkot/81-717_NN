@@ -1,0 +1,9 @@
+{
+	"$basetexture" "models/metrostroi_train/NN-717/NN_cabine"
+	"$bumpmap" "models/metrostroi_train/NN-717/NN_cabine_n"
+	
+	"$phongexponenttexture"	"models/metrostroi_train/NN-717/NN_cabine_phong"
+	"$phong" "1"
+    "$phongboost" "0.1"
+    "$phongfresnelranges" "[1 1 1]"
+}

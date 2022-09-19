@@ -1,0 +1,10 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/metrostroi_train/NN-717/NN_mask_141"
+	"$bumpmap" "models/metrostroi_train/NN-717/NN_mask_141_n"
+	
+	"$phongexponenttexture"	"models/metrostroi_train/NN-717/NN_mask_141_phong"
+	"$phong" "1"
+    "$phongboost" "0.1"
+    "$phongfresnelranges" "[1 1 1]"
+}
