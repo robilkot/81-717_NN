@@ -1,13 +1,13 @@
 "VertexLitGeneric"
 {
-	"$basetexture" "models/metrostroi_train/NN-717/NN_cabine1008"
+	"$basetexture" "models/metrostroi_train/NN-717/NN_cabine_1008"
 	"$model" "1"
 
 	"$phong" "1"
 
-	"$bumpmap"				"models/metrostroi_train/81-717/cabine_1008_lvz_n"
-	"$phongexponenttexture"	"models/metrostroi_train/81-717/cabine_1008_lvz_s"
-	"$phongboost"				1.5
+	"$bumpmap"				"models/metrostroi_train/81-717/cabine_1008_kvr_n"
+	"$phongexponenttexture"	"models/metrostroi_train/81-717/cabine_1008_kvr_s"
+	"$phongboost"				"1.5"
 	"$phongfresnelranges"		"[0.2 0.2 0.2]"
 
 	"$envmap" "env_cubemap"
