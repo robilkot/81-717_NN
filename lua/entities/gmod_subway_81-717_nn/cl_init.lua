@@ -154,30 +154,37 @@ ENT.ClientProps["handrails_new"] = {
     hide=1.5,
 }
 
-ENT.ClientProps["mask22_mvm"] = {
-    model = "models/metrostroi_train/81-717/mask_22.mdl",
+ENT.ClientProps["mask_nn"] = {
+    model = "models/metrostroi_train/NN-717/NN_717_mask.mdl",
     pos = Vector(0,0,0),
     ang = Angle(0,0,0),
     nohide=true,
 }
-ENT.ClientProps["mask222_mvm"] = {
-    model = "models/metrostroi_train/81-717/mask_222.mdl",
-    pos = Vector(0,0,0),
-    ang = Angle(0,0,0),
-    nohide=true,
-}
-ENT.ClientProps["mask222_lvz"] = {
-    model = "models/metrostroi_train/81-717/mask_spb_222.mdl",
-    pos = Vector(0,0,0),
-    ang = Angle(0,0,0),
-    nohide=true,
-}
-ENT.ClientProps["mask141_mvm"] = {
-    model = "models/metrostroi_train/81-717/mask_141.mdl",
-    pos = Vector(0,0,0),
-    ang = Angle(0,0,0),
-    nohide=true,
-}
+
+-- ENT.ClientProps["mask22_mvm"] = {
+--     model = "models/metrostroi_train/81-717/mask_22.mdl",
+--     pos = Vector(0,0,0),
+--     ang = Angle(0,0,0),
+--     nohide=true,
+-- }
+-- ENT.ClientProps["mask222_mvm"] = {
+--     model = "models/metrostroi_train/81-717/mask_222.mdl",
+--     pos = Vector(0,0,0),
+--     ang = Angle(0,0,0),
+--     nohide=true,
+-- }
+-- ENT.ClientProps["mask222_lvz"] = {
+--     model = "models/metrostroi_train/81-717/mask_spb_222.mdl",
+--     pos = Vector(0,0,0),
+--     ang = Angle(0,0,0),
+--     nohide=true,
+-- }
+-- ENT.ClientProps["mask141_mvm"] = {
+--     model = "models/metrostroi_train/81-717/mask_141.mdl",
+--     pos = Vector(0,0,0),
+--     ang = Angle(0,0,0),
+--     nohide=true,
+-- }
 ENT.ClientProps["Headlights222_1"] = {
     model = "models/metrostroi_train/81-717/lamps/headlights_222_group1.mdl",
     pos = Vector(0,0,0),
@@ -2662,10 +2669,10 @@ function ENT:Think()
     self:ShowHideSmooth("Lamp_RTM1",not dot5 and lamps_rtm or 0)
     self:ShowHideSmooth("Lamp_RTM2",dot5 and lamps_rtm or 0)
 
-    self:ShowHide("mask222_mvm",not mask and not lvz and not mask22)
-    self:ShowHide("mask222_lvz",not mask and lvz and not mask22)
-    self:ShowHide("mask141_mvm",mask and not mask22)
-    self:ShowHide("mask22_mvm",mask22 and not mask)
+    -- self:ShowHide("mask222_mvm",not mask and not lvz and not mask22)
+    -- self:ShowHide("mask222_lvz",not mask and lvz and not mask22)
+    -- self:ShowHide("mask141_mvm",mask and not mask22)
+    -- self:ShowHide("mask22_mvm",mask22 and not mask)
     --self:ShowHide("mask141_lvz",mask and lvz)
     self:ShowHide("1:KVTSet",not lvz)
     self:ShowHide("1:KVTRSet",not lvz)
