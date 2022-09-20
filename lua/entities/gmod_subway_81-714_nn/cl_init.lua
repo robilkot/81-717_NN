@@ -45,7 +45,13 @@ ENT.ClientSounds = {}
 ENT.AutoAnims = {}
 
 ENT.ClientProps["salon"] = {
-    model = "models/metrostroi_train/81-717/interior_mvm_int.mdl",
+    model = "models/metrostroi_train/NN-717/NN_714_int1.mdl",
+    pos = Vector(0,0,0),
+    ang = Angle(0,0,0),
+    hide=2,
+}
+ENT.ClientProps["salon_2"] = {
+    model = "models/metrostroi_train/NN-717/NN_714_int2.mdl",
     pos = Vector(0,0,0),
     ang = Angle(0,0,0),
     hide=2,

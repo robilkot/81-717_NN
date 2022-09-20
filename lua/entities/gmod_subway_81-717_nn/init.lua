@@ -437,8 +437,8 @@ function ENT:TrainSpawnerUpdate()
     --{"BPSNType","Spawner.717.BPSNType","List",{"Spawner.717.Common.Random","Spawner.717.BPSNType.1","Spawner.717.BPSNType.2","Spawner.717.BPSNType.3","Spawner.717.BPSNType.4","Spawner.717.BPSNType.5","Spawner.717.BPSNType.6","Spawner.717.BPSNType.7","Spawner.717.BPSNType.8","Spawner.717.BPSNType.9","Spawner.717.BPSNType.10","Spawner.717.BPSNType.11","Spawner.717.BPSNType.12","Spawner.717.BPSNType.13"}},
     --{"RingType","Spawner.717.RingType","List",{"Spawner.717.Common.Random","Spawner.717.RingType.1","Spawner.717.RingType.2","Spawner.717.RingType.3","Spawner.717.RingType.4","Spawner.717.RingType.5","Spawner.717.RingType.6","Spawner.717.RingType.7","Spawner.717.RingType.8"}},
 
-    local dot5 = self:GetNW2Int("Type")==2
-    local typ = self:GetNW2Int("BodyType")
+    local dot5 = true
+    local typ = 1
     
     self:SetNW2Int("Crane",typ==1 and self:GetNW2Int("Cran") or 2)
 
@@ -446,7 +446,6 @@ function ENT:TrainSpawnerUpdate()
     local ARSType = self:GetNW2Int("ARSType")
     local RingType = self:GetNW2Int("RingType")
     local BPSNType = self:GetNW2Int("BPSNType")
-    local SeatType = self:GetNW2Int("SeatType")
     self:SetNW2Bool("HandRails",dot5)
     self:SetNW2Bool("Dot5",dot5)
     self:SetNW2Bool("LVZ",typ==2)
@@ -462,11 +461,6 @@ function ENT:TrainSpawnerUpdate()
     self:SetNW2Int("KVType",math.ceil(math.random()*3+0.5))
     self:SetNW2Int("BPSNType",BPSNType==1 and math.ceil(math.random()*12+0.5) or BPSNType-1)
     self:SetNW2Int("RingType",RingType==1 and math.ceil(math.random()*8+0.5) or RingType-1)
-    if SeatType==1 then
-        self:SetNW2Bool("NewSeats",math.random()>0.5)
-    else
-        self:SetNW2Bool("NewSeats",SeatType==3)
-    end
 
     self.Announcer.AnnouncerType = self:GetNW2Int("Announcer",1)
     self.LampType = self:GetNW2Int("LampType",1)

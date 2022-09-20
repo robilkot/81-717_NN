@@ -117,30 +117,6 @@ ENT.ClientProps["lamps2"] = {
     ang = Angle(0,0,0),
     hide=1.5,
 }
-ENT.ClientProps["seats_old"] = {
-    model = "models/metrostroi_train/81-717/couch_old.mdl",
-    pos = Vector(0,0,0),
-    ang = Angle(0,0,0),
-    hide=1.5,
-}
-ENT.ClientProps["seats_old_cap"] = {
-    model = "models/metrostroi_train/81-717/couch_cap_l.mdl",
-    pos = Vector(0,0,0),
-    ang = Angle(0,0,0),
-    hideseat=0.8,
-}
-ENT.ClientProps["seats_new"] = {
-    model = "models/metrostroi_train/81-717/couch_new.mdl",
-    pos = Vector(0,0,0),
-    ang = Angle(0,0,0),
-    hide=1.5,
-}
-ENT.ClientProps["seats_new_cap"] = {
-    model = "models/metrostroi_train/81-717/couch_new_cap.mdl",
-    pos = Vector(0,0,0),
-    ang = Angle(0,0,0),
-    hideseat=0.8,
-}
 ENT.ClientProps["handrails_old"] = {
     model = "models/metrostroi_train/81-717/handlers_old.mdl",
     pos = Vector(0,0,0),
@@ -277,14 +253,14 @@ ENT.ClientProps["door3"] = {
     hide=2,
 }
 
-ENT.ClientProps["cabine_mvm"] = {
-    model = "models/metrostroi_train/81-717/cabine_mvm.mdl",
+ENT.ClientProps["cabine_nn"] = {
+    model = "models/metrostroi_train/NN-717/NN_717_cabine_kvr.mdl",
     pos = Vector(0,0,0),
     ang = Angle(0,0,0),
     hide=2,
 }
-ENT.ClientProps["cabine_lvz"] = {
-    model = "models/metrostroi_train/81-717/cabine_lvz.mdl",
+ENT.ClientProps["cabine_nn_add"] = {
+    model = "models/metrostroi_train/NN-717/NN_717_cabine_additional.mdl",
     pos = Vector(0,0,0),
     ang = Angle(0,0,0),
     hide=2,
@@ -825,6 +801,18 @@ ENT.ButtonMap["ASNPScreen"] = {
     hideseat=0.2,
     hide=true,
 }
+
+ENT.ButtonMap["RouteNumberScreen"] = {
+    pos = Vector(460,-26.7,39),
+    ang = Angle(0,90,90.0),
+    width = 512,
+    height = 128,
+    scale = 0.07,
+
+    hideseat=0.2,
+    hide=true,
+}
+
 
 ENT.ButtonMap["Block2_2"] = {
     pos = Vector(450.4,10.0,1.3+5.35),
@@ -2629,10 +2617,8 @@ function ENT:Think()
     local handrails = self:GetNW2Bool("HandRails")
     local dot5 = self:GetNW2Bool("Dot5")
     local lvz = self:GetNW2Bool("LVZ")
-    local newSeats = self:GetNW2Bool("NewSeats")
     local mask = self:GetNW2Bool("Mask")
     local mask22 = self:GetNW2Bool("Mask22")
-    self:ShowHide("cabine_mvm",not dot5)
     self:ShowHide("destination",not dot5)
     self:HidePanel("Battery_C",dot5)
     self:HidePanel("AV_C",dot5)
@@ -2642,7 +2628,6 @@ function ENT:Think()
     self:HidePanel("HelperPanel_C",dot5)
     self:HidePanel("BZOS_C",dot5)
     self:HidePanel("CabVent_C",dot5)
-    self:ShowHide("cabine_lvz",dot5)
     self:ShowHide("destination1",dot5)
     self:HidePanel("Battery_R",not dot5)
     self:HidePanel("AV_R",not dot5)
@@ -2685,11 +2670,6 @@ function ENT:Think()
     self:ShowHideSmooth("Headlights22_1",(mask22 and not mask) and HL1 or 0)
     self:ShowHideSmooth("Headlights22_2",(mask22 and not mask) and HL2 or 0)
 
-
-    self:ShowHide("seats_old",not newSeats)
-    self:ShowHide("seats_old_cap",not newSeats)
-    self:ShowHide("seats_new",newSeats)
-    self:ShowHide("seats_new_cap",newSeats)
     self:Animate("PB",self:GetPackedBool("PB") and 1 or 0,0,0.2,  12,false)
     self:Animate("UAVALever",   self:GetPackedBool("UAVA") and 1 or 0,     0,0.6, 128,  3,false)
     self:Animate("parking_brake",   self:GetPackedBool("ParkingBrake") and 1 or 0,0.25,0,  4,false)
@@ -3053,6 +3033,24 @@ function ENT:Think()
     end
 end
 
+surface.CreateFont("Metrostroi_717_NN_RouteNumber", {
+	font = "DS Dots", --  Use the font-name which is shown to you by your operating system Font Viewer, not the file name
+	extended = false,
+	size = 102,
+	weight = 500,
+	blursize = 0,
+	scanlines = 0,
+	antialias = true,
+	underline = false,
+	italic = false,
+	strikeout = false,
+	symbol = false,
+	rotary = false,
+	shadow = false,
+	additive = false,
+	outline = false,
+} )
+
 function ENT:Draw()
     self.BaseClass.Draw(self)
 end
@@ -3078,6 +3076,13 @@ function ENT:DrawPost(special)
         surface.SetMaterial(self.RTMaterial)
         surface.SetDrawColor(255,255,255)
         surface.DrawTexturedRectRotated(256,64,512,128,0)
+    end)
+    self:DrawOnPanel("RouteNumberScreen", function(...)
+        draw.NoTexture()
+        surface.SetTextPos(0, 0)
+        surface.SetFont("Metrostroi_717_NN_RouteNumber")
+        surface.SetTextColor(0,255,0)
+        surface.DrawText(self.RouteNumber.Number or "61")
     end)
 
     self:DrawOnPanel("AirDistributor",function()

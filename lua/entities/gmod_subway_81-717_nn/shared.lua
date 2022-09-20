@@ -816,7 +816,7 @@ function ENT:InitializeSystems()
     self:LoadSystem("ASNP","81_71_ASNP")
     self:LoadSystem("ASNP_VV","81_71_ASNP_VV")
 
-    self:LoadSystem("RouteNumber","81_71_RouteNumber",2)
+    self:LoadSystem("RouteNumber","81_717_NN_RouteNumber",2)
     self:LoadSystem("LastStation","81_71_LastStation","717","destination")
 end
 
@@ -928,8 +928,6 @@ ENT.Spawner = {
             train.NumberRangesID = body>1 and (math.random()>0.5 and 6 or 7) or (math.random()>0.5 and 4 or 5)
         end
     end,
-    {"Type","Spawner.717.Type","List",{"81-717","81-717.5"}},
-    {"BodyType","Spawner.717.BodyType","List",{"Spawner.717.Type.MVM","Spawner.717.Type.LVZ"}},
     {"Scheme","Spawner.717.Schemes","List",Schemes},
     {},
     {"MaskType","Spawner.717.MaskType","List",{"2-2","2-2-2","1-4-1"}},

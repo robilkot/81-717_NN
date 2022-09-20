@@ -22,7 +22,7 @@ function ENT:Initialize()
     self.LampType = 1
 
     -- Set model and initialize
-    self:SetModel("models/metrostroi_train/81-717/81-717_mvm_int.mdl")
+    self:SetModel("models/metrostroi_train/NN-717/NN_714_body.mdl")
     self.BaseClass.Initialize(self)
     self:SetPos(self:GetPos() + Vector(0,0,140))
 
@@ -262,58 +262,23 @@ function ENT:TrainSpawnerUpdate()
     self:SetNW2Bool("Custom",self.CustomSettings)
     local num = self.WagonNumber
     math.randomseed(num+817171)
-    if self.CustomSettings then
-        local dot5 = self:GetNW2Int("Type")==2
-        local typ = self:GetNW2Int("BodyType")
-        self:SetNW2Int("Crane",typ==1 and self:GetNW2Int("Cran") or 2)
+    
+    local dot5 = true
+    local typ = self:GetNW2Int("BodyType")
+    self:SetNW2Int("Crane",typ==1 and self:GetNW2Int("Cran") or 2)
 
-        local lampType = self:GetNW2Int("LampType")
-        local BPSNType = self:GetNW2Int("BPSNType")
-        local SeatType = self:GetNW2Int("SeatType")
-        self:SetNW2Bool("Dot5",dot5)
-            self:SetNW2Int("LampType",lampType==1 and (math.random()>0.5 and 2 or 1) or lampType-1)
-            self:SetNW2Int("BPSNType",BPSNType==1 and math.ceil(math.random()*12+0.5) or BPSNType-1)
-            if SeatType==1 then
-                self:SetNW2Bool("NewSeats",math.random()>0.5)
-            else
-                self:SetNW2Bool("NewSeats",SeatType==3)
-            end
+    local lampType = self:GetNW2Int("LampType")
+    local BPSNType = self:GetNW2Int("BPSNType")
+    local SeatType = self:GetNW2Int("SeatType")
+    self:SetNW2Bool("Dot5",dot5)
+    self:SetNW2Int("LampType",lampType==1 and (math.random()>0.5 and 2 or 1) or lampType-1)
+    self:SetNW2Int("BPSNType",BPSNType==1 and math.ceil(math.random()*12+0.5) or BPSNType-1)
+    if SeatType==1 then
+        self:SetNW2Bool("NewSeats",math.random()>0.5)
     else
-        local num = self.WagonNumber
-        local typ = self.WagonNumberConf or {}
-        local lvz = typ[1]
-        self.Dot5 = typ[2]
-        self.NewBortlamps = typ[4]
-        if lvz then
-            --self:SetModel("models/metrostroi_train/81-717/81-717_lvz.mdl")
-            self:SetModel("models/metrostroi_train/81-717/81-717_mvm_int.mdl")
-        else
-            self:SetModel("models/metrostroi_train/81-717/81-717_mvm_int.mdl")
-        end
-        self:SetNW2Bool("Dot5",self.Dot5)
-        self:SetNW2Bool("LVZ",lvz)
-        self:SetNW2Bool("NewSeats",typ[3])
-        self:SetNW2Bool("NewBortlamps",self.NewBortlamps)
-
-        self:SetNW2Int("LampType",math.random()>0.5 and 2 or 1)
-
-        local tex = typ[5] and typ[5][math.random(1,#typ[5])] or "Def_717MSKWhite"
-        self:SetNW2String("PassTexture",tex)
-        local oldType = not self.Dot5 and not typ[3] and not lvz
-        self:SetNW2Int("BPSNType",oldType and (math.random()>0.7 and 2 or 1) or 2+math.Clamp(math.floor(math.random()*11)+1,1,11))
-
-        self:SetNW2Int("Crane",not self.Dot5 and 2 or 1)
-        if self.Dot5 then
-            self.FrontCouple.CoupleType = "717"
-        else
-            self.FrontCouple.CoupleType = "702"
-        end
-        self.RearCouple.CoupleType = self.FrontCouple.CoupleType
-        self.FrontCouple:SetParameters()
-        self.RearCouple:SetParameters()
-        self:SetNW2String("Texture","Def_717MSKClassic1")
-        --self.ARSType = self:GetNW2Int("ARSType",1)
+        self:SetNW2Bool("NewSeats",SeatType==3)
     end
+            
     self.LampType = self:GetNW2Int("LampType",1)
     self.Pneumatic.ValveType = self:GetNW2Int("Crane",1)
     self.Announcer.AnnouncerType = self:GetNW2Int("Announcer",1)
