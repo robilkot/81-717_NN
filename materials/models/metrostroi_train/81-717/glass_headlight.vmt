@@ -1,0 +1,17 @@
+"VertexLitGeneric"
+{
+	"$translucent" "1"
+	"$model" "1"
+	"$nocull" "1"
+	"$basetexture" "models/metrostroi_train/81-717/glass_headlight"
+	"$phong" "1"
+	"$phongexponent" "30"
+	"$phongboost"	"1"
+	"$phongfresnelranges"	"[.5 .5 .5]"
+	"$bumpmap" "models/metrostroi_train/81-717/glass_headlight_n"
+	
+	"$envmap" "env_cubemap"
+	"$envmaptint" "[ .05 .05 .05 ]"
+	envma
+	"$normalmapalphaenvmapmask" "1"
+}
