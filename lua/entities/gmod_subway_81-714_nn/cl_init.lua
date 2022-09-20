@@ -83,50 +83,38 @@ ENT.ClientProps["body_additional"] = {
     ang = Angle(0,0,0),
     hide=2,
 }
-ENT.ClientProps["seats_old"] = {
-    model = "models/metrostroi_train/81-717/couch_old_int.mdl",
-    pos = Vector(0,0,0),
-    ang = Angle(0,0,0),
-    hide=1.5,
-}
-ENT.ClientProps["handrails_old"] = {
-    model = "models/metrostroi_train/81-717/handlers_old_int.mdl",
-    pos = Vector(0,0,0),
-    ang = Angle(0,0,0),
-    hide=2,
-}
-ENT.ClientProps["seats_new"] = {
-    model = "models/metrostroi_train/81-717/couch_new_int.mdl",
-    pos = Vector(0,0,0),
-    ang = Angle(0,0,0),
-    hide=1.5,
-}
-ENT.ClientProps["handrails_new"] = {
-    model = "models/metrostroi_train/81-717/handlers_new_int.mdl",
-    pos = Vector(0,0,0),
-    ang = Angle(0,0,0),
-    hide=2,
-}
-ENT.ClientProps["seats_old_cap"] = {
-    model = "models/metrostroi_train/81-717/couch_cap_l.mdl",
-    pos = Vector(0,0,0),
-    ang = Angle(0,0,0),
-    hideseat=0.8,
-}
-ENT.ClientProps["seats_old_cap_o"] = {
-    model = "models/metrostroi_train/81-717/couch_cap_l.mdl",
-    pos = Vector(-285,410,13),
-    ang = Angle(0,70,-70),
-    hideseat=0.8,
-}
-ENT.ClientProps["seats_new_cap"] = {
-    model = "models/metrostroi_train/81-717/couch_new_cap.mdl",
+-- ENT.ClientProps["seats_old"] = {
+--     model = "models/metrostroi_train/81-717/couch_old_int.mdl",
+--     pos = Vector(0,0,0),
+--     ang = Angle(0,0,0),
+--     hide=1.5,
+-- }
+-- ENT.ClientProps["handrails_old"] = {
+--     model = "models/metrostroi_train/81-717/handlers_old_int.mdl",
+--     pos = Vector(0,0,0),
+--     ang = Angle(0,0,0),
+--     hide=2,
+-- }
+-- ENT.ClientProps["seats_new"] = {
+--     model = "models/metrostroi_train/81-717/couch_new_int.mdl",
+--     pos = Vector(0,0,0),
+--     ang = Angle(0,0,0),
+--     hide=1.5,
+-- }
+-- ENT.ClientProps["handrails_new"] = {
+--     model = "models/metrostroi_train/81-717/handlers_new_int.mdl",
+--     pos = Vector(0,0,0),
+--     ang = Angle(0,0,0),
+--     hide=2,
+-- }
+ENT.ClientProps["seats_cap"] = {
+    model = "models/metrostroi_train/NN-717/NN_714_otsek.mdl",
     pos = Vector(0,0,0),
     ang = Angle(0,0,0),
     hideseat=0.8,
 }
-ENT.ClientProps["seats_new_cap_o"] = {
-    model = "models/metrostroi_train/81-717/couch_new_cap.mdl",
+ENT.ClientProps["seats_cap_o"] = {
+    model = "models/metrostroi_train/NN-717/NN_714_otsek.mdl",
     pos = Vector(-285,410,13),
     ang = Angle(0,70,-70),
     hideseat=0.8,
@@ -563,35 +551,43 @@ ENT.ClientProps["door2"] = {
 ENT.ClientPropsInitialized = false
 
 
+local train_brake_line = Vector(-466.55, 14.5, 56.7)
+local brake_cylinder = Vector(-466.6,9.1,56.8)
+
+
 ENT.ClientProps["train_line"] = {
     model = "models/metrostroi_train/Equipment/arrow_nm.mdl",
-    pos = Vector(-465.05,14.2,58.55),
+    pos = train_brake_line,
     ang = Angle(-90,0,180),
     hideseat=0.8,
 }
 ENT.ClientProps["brake_line"] = {
     model = "models/metrostroi_train/Equipment/arrow_tm.mdl",
-    pos = Vector(-465.01,14.2,58.55),
+    pos = train_brake_line + Vector(0.04, 0, 0),
     ang = Angle(-90,0,180),
     hideseat=0.8,
 }
 ENT.ClientProps["brake_cylinder"] = {
     model = "models/metrostroi_train/Equipment/arrow_nm.mdl",
-    pos = Vector(-464.94,9.0,58.45),
+    pos = brake_cylinder,
     ang = Angle(-90,0,180),
     hideseat=0.8,
 }
 --------------------------------------------------------------------------------
+
+local meter_x = -466.5
+local meter_z = 55
+
 ENT.ClientProps["voltmeter"] = {
     model = "models/metrostroi_train/81-710/ezh3_voltages.mdl",
-    pos = Vector(-464.80,-13.07,56.81),
+    pos = Vector(meter_x,-13.07,meter_z),
     ang = Angle(-90,0,180),
     hideseat=0.8,
     bscale = Vector(1.2,1.2,1.65)
 }
 ENT.ClientProps["ampermeter"] = {
     model = "models/metrostroi_train/81-710/ezh3_voltages.mdl",
-    pos = Vector(-464.80,-8.04,56.81),
+    pos = Vector(meter_x,-8.04,meter_z),
     ang = Angle(-90,0,180),
     hideseat=0.8,
     bscale = Vector(1.2,1.2,1.65)
@@ -900,17 +896,15 @@ function ENT:Think()
     local lvz = self:GetNW2Bool("LVZ")
     local custom = self:GetNW2Bool("Custom")
     local newSeats = self:GetNW2Bool("NewSeats")
-    self:ShowHide("handrails_old",not dot5)
-    self:ShowHide("handrails_new",dot5)
-    self:ShowHide("seats_old",not newSeats)
-    self:ShowHide("seats_new",newSeats)
+    -- self:ShowHide("handrails_old",not dot5)
+    -- self:ShowHide("handrails_new",dot5)
+    -- self:ShowHide("seats_old",not newSeats)
+    -- self:ShowHide("seats_new",newSeats)
 
     local capOpened = self:GetPackedBool("CouchCap")
     local c013 = self:GetPackedBool("Crane013")
-    self:ShowHide("seats_old_cap_o",capOpened and not newSeats)
-    self:ShowHide("seats_old_cap",not capOpened and not newSeats)
-    self:ShowHide("seats_new_cap_o",capOpened and newSeats)
-    self:ShowHide("seats_new_cap",not capOpened and newSeats)
+    self:ShowHide("seats_cap_o",capOpened and not newSeats)
+    self:ShowHide("seats_cap",not capOpened and not newSeats)
     self:HidePanel("couch_cap",capOpened)
     self:HidePanel("couch_cap_o",not capOpened)
     self:HidePanel("AV_S",not capOpened)
@@ -933,7 +927,9 @@ function ENT:Think()
     self:Animate("brake_line",      self:GetPackedRatio("BLPressure"),0.14, 0.875,  256,2)--,,0.01)
     self:Animate("train_line",      self:GetPackedRatio("TLPressure"),0.14, 0.875,  256,2)--,,0.01)
     self:Animate("brake_cylinder",  self:GetPackedRatio("BCPressure"),0.14, 0.875,  256,2)--,,0.03)
+    
     self:Animate("voltmeter",       self:GetPackedRatio("BatteryVoltage"),0.601, 0.400)
+    -- self:Animate("voltmeter",       0.5,0.601, 0.400)
     if self:GetPackedRatio("BatteryVoltage") > 0 then
         self:Animate("ampermeter",      0.47+math.Clamp((self:GetPackedRatio("BatteryVoltage")-0.44)/1.3,0,1),0.604, 0.398)
     else

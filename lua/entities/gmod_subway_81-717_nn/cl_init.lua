@@ -117,18 +117,18 @@ ENT.ClientProps["lamps2"] = {
     ang = Angle(0,0,0),
     hide=1.5,
 }
-ENT.ClientProps["handrails_old"] = {
-    model = "models/metrostroi_train/81-717/handlers_old.mdl",
-    pos = Vector(0,0,0),
-    ang = Angle(0,0,0),
-    hide=1.5,
-}
-ENT.ClientProps["handrails_new"] = {
-    model = "models/metrostroi_train/81-717/handlers_new.mdl",
-    pos = Vector(0,0,0),
-    ang = Angle(0,0,0),
-    hide=1.5,
-}
+-- ENT.ClientProps["handrails_old"] = {
+--     model = "models/metrostroi_train/81-717/handlers_old.mdl",
+--     pos = Vector(0,0,0),
+--     ang = Angle(0,0,0),
+--     hide=1.5,
+-- }
+-- ENT.ClientProps["handrails_new"] = {
+--     model = "models/metrostroi_train/81-717/handlers_new.mdl",
+--     pos = Vector(0,0,0),
+--     ang = Angle(0,0,0),
+--     hide=1.5,
+-- }
 
 ENT.ClientProps["mask_nn"] = {
     model = "models/metrostroi_train/NN-717/NN_717_mask.mdl",
@@ -227,12 +227,6 @@ ENT.ClientProps["door_otsek2"] = {
     pos = Vector(375.35,-59.65,5.167),
     ang = Angle(0,-90,0),
     hideseat=1.7,
-}
-ENT.ClientProps["cap_l"] = {
-    model = "models/metrostroi_train/81-717/couch_cap_r.mdl",
-    pos = Vector(0,0,0),
-    ang = Angle(0,0,0),
-    hideseat=0.8,
 }
 ENT.ClientProps["door1"] = {
     model = "models/metrostroi_train/81-717/door_torec.mdl",
@@ -2614,7 +2608,7 @@ function ENT:Think()
         if (ARSType == 2 or ARSType == 3) and IsValid(self.ClientEnts["RSpeed2"])then self.ClientEnts["RSpeed2"]:SetSkin(math.floor(speed/10)) end
     end
 
-    local handrails = self:GetNW2Bool("HandRails")
+    -- local handrails = self:GetNW2Bool("HandRails")
     local dot5 = self:GetNW2Bool("Dot5")
     local lvz = self:GetNW2Bool("LVZ")
     local mask = self:GetNW2Bool("Mask")
@@ -2637,8 +2631,8 @@ function ENT:Think()
     self:HidePanel("CabVent_R",not dot5)
     self:HidePanel("HelperPanel_R",not dot5)
     self:HidePanel("BZOS_R",not dot5)
-    self:ShowHide("handrails_old",not dot5)
-    self:ShowHide("handrails_new",dot5)
+    -- self:ShowHide("handrails_old",not dot5)
+    -- self:ShowHide("handrails_new",dot5)
     self.LastStation.EntityName = dot5 and "destination1" or "destination"
 
     local lamps_cab2 = self:Animate("lamps_cab2",self:GetPackedBool("EqLights") and 1 or 0,0,1,5,false)
