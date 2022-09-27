@@ -1,6 +1,6 @@
 "UnlitGeneric"
 {
-    "$basetexture" "models/metrostroi_train/81-540b/minsk_lamp_glow1"
+    "$basetexture" "models/metrostroi_train/81-717/minsk_lamp_glow1"
     $additive 1
     $model 1
     $color2 "[1 1 1]"
