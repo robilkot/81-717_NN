@@ -161,6 +161,8 @@ ENT.ClientProps["mask_nn"] = {
 --     ang = Angle(0,0,0),
 --     nohide=true,
 -- }
+/*
+
 ENT.ClientProps["Headlights222_1"] = {
     model = "models/metrostroi_train/81-717/lamps/headlights_222_group1.mdl",
     pos = Vector(0,0,0),
@@ -197,6 +199,21 @@ ENT.ClientProps["Headlights22_2"] = {
     ang = Angle(0,0,0),
     nohide=true,
 }
+*/
+
+ENT.ClientProps["Headlights_1"] = {
+    model = "models/metrostroi_train/81-717/mask_141_lights1.mdl",
+    pos = Vector(0,0,0),
+    ang = Angle(0,0,0),
+    nohide=true,
+}
+ENT.ClientProps["Headlights_2"] = {
+    model = "models/metrostroi_train/81-717/mask_141_lights2.mdl",
+    pos = Vector(0,0,0),
+    ang = Angle(0,0,0),
+    nohide=true,
+}
+
 ENT.ClientProps["RedLights"] = {
     model = "models/metrostroi_train/81-717/lamps/redlights.mdl",
     pos = Vector(0,0,0),
@@ -304,21 +321,11 @@ ENT.ClientProps["pult_mvm_classic"] = {
     color = Color(255,255,255),
     hideseat=0.8,
 }
-local ARSes = {
-    "models/metrostroi_train/81-717/pult/ars_square.mdl",
-    "models/metrostroi_train/81-717/pult/ars_round.mdl",
-    "models/metrostroi_train/81-717/pult/ars_round_yellow.mdl",
-    "models/metrostroi_train/81-717/pult/ars_old.mdl",
-    "models/metrostroi_train/81-717/pult/ars_old_yellow.mdl",
-}
 ENT.ClientProps["ars_mvm"] = {
-    model = "models/metrostroi_train/81-717/pult/ars_round.mdl",
+    model = "models/metrostroi_train/81-717/pult/ars_spb_blue.mdl",
     pos = Vector(0,0,0),
     ang = Angle(0,0,0),
     hideseat=0.8,
-    modelcallback = function(ent,cent)
-        return ARSes[ent:GetNW2Int("ARSType",1)]
-    end,
 }
 --[[
 ENT.ClientProps["ars_mvm_round"] = {
@@ -818,7 +825,112 @@ ENT.ButtonMap["RouteNumberScreen"] = {
 
     nohide = true,
 }
+ENT.ButtonMap["Block2"] = {
+    pos = Vector(450.4+0.35,10.0,1.3+5.35),
+    ang = Angle(0,-90,58),
+    width = 300,
+    height = 110,
+    scale = 0.0625,
+    hideseat=0.2,
 
+    buttons = {
+        {ID = "!Speedometer1",x=137,y=29,w=17,h=25,tooltip="",model = {
+            name="SSpeed2",model = "models/metrostroi_train/81-717/segments/segment_spb.mdl",color=Color(175,250,20),skin=0,z=0.1,ang=Angle(0,0,-90),
+        }},
+        {ID = "!Speedometer2",x=158,y=29,w=17,h=25,tooltip="",model = {
+            name="SSpeed1",model = "models/metrostroi_train/81-717/segments/segment_spb.mdl",color=Color(175,250,20),skin=0,z=0.1,ang=Angle(0,0,-90),
+        }},
+
+        {ID = "!ARSOch",x=100,y=33,w=10,h=10,tooltip="",model = {
+            name="SAOCh",lamp = {speed=10,model = "models/metrostroi_train/81-717/lamps/lamp_panelspb_ra.mdl",z=-0.2,var="AR04"},
+        }},
+        {ID = "!ARS0",x=89,y=33+10.9*0,w=10,h=10,tooltip="",model = {
+            name="SA0",lamp = {speed=10,model = "models/metrostroi_train/81-717/lamps/lamp_panelspb_ra.mdl",z=-0.2,var="AR0"},
+        }},
+        {ID = "!ARS40",x=89,y=33+10.9*1,w=10,h=10,tooltip="",model = {
+            name="SA40",lamp = {speed=10,model = "models/metrostroi_train/81-717/lamps/lamp_panelspb_ya.mdl",z=-0.2,var="AR40"},
+        }},
+        {ID = "!ARS60",x=89,y=33+10.9*2,w=10,h=10,tooltip="",model = {
+            name="SA60",lamp = {speed=10,model = "models/metrostroi_train/81-717/lamps/lamp_panelspb_ya.mdl",z=-0.2,color=Color(175,250,20),var="AR60"},
+        }},
+        {ID = "!ARS70",x=89,y=33+10.9*3,w=10,h=10,tooltip="",model = {
+            name="SA70",lamp = {speed=10,model = "models/metrostroi_train/81-717/lamps/lamp_panelspb_ya.mdl",z=-0.2,color=Color(175,250,20),var="AR70"},
+        }},
+        {ID = "!ARS80",x=89,y=33+10.9*4,w=10,h=10,tooltip="",model = {
+            name="SA80",lamp = {speed=10,model = "models/metrostroi_train/81-717/lamps/lamp_panelspb_ya.mdl",z=-0.2,color=Color(175,250,20),var="AR80"},
+        }},
+
+        {ID = "!LampLSD1",x=191.0,y=34.2,w=10,h=4,tooltip="",model = {
+            name="SSD1",lamp = {speed=10,model = "models/metrostroi_train/81-717/lamps/lamp_panelspb_yb.mdl",z=-0.2,color=Color(175,250,20),var="SD"},
+        }},
+        {ID = "!LampLSD2",x=201.2,y=34.2,w=10,h=4,tooltip="",model = {
+            name="SSD2",lamp = {speed=10,model = "models/metrostroi_train/81-717/lamps/lamp_panelspb_yb.mdl",z=-0.2,ang=90,color=Color(175,250,20),var="SD"},
+        }},
+
+        {ID = "!LampLVD",x=191.3,y=43.8+8.8*0,w=10,h=4,tooltip="",model = {
+            name="SVD",lamp = {speed=10,model = "models/metrostroi_train/81-717/lamps/lamp_panelspb_yb.mdl",var="A04",z=-0.2,color=Color(175,250,20),var="VD"},
+        }},
+        {ID = "!LampLHRK",x=191.3,y=43.8+8.8*1,w=10,h=4,tooltip="",model = {
+            name="SRK",lamp = {speed=10,model = "models/metrostroi_train/81-717/lamps/lamp_panelspb_yb.mdl",z=-0.2,var="HRK"},
+        }},
+        {ID = "!LampLST",x=191.3,y=43.8+8.8*2,w=10,h=4,tooltip="",model = {
+            name="SST",lamp = {speed=10,model = "models/metrostroi_train/81-717/lamps/lamp_panelspb_yb.mdl",z=-0.2,var="ST"},
+        }},
+        {ID = "!LampLRD",x=191.3,y=43.8+8.8*3,w=10,h=4,tooltip="",model = {
+            name="SRD",lamp = {speed=10,model = "models/metrostroi_train/81-717/lamps/lamp_panelspb_yb.mdl",z=-0.2,color=Color(175,250,20),var="LRD"},
+        }},
+
+
+        {ID = "!LampRP",x=209.8,y=43.9+8.8*0,w=10,h=4,tooltip="",model = {
+            name="SRP",lamp = {speed=10,model = "models/metrostroi_train/81-717/lamps/lamp_panelspb_rb.mdl",z=-0.2,var="RP"},
+        }},
+        {ID = "!LampLSN",x=219.8,y=43.9+8.8*0,w=10,h=4,tooltip="",model = {
+            name="SSN",lamp = {speed=10,model = "models/metrostroi_train/81-717/lamps/lamp_panelspb_rb.mdl",z=-0.2,ang=-90,var="SN"},
+        }},
+
+        --{x=2031 + 2*0,y=223 + 192*0,w=10,h=10,tooltip="",radius=10},
+        {ID = "!LampLKVD",x=219,y=43.8+8.8*1,w=10,h=4,tooltip="",model = {
+            name="SKVD",lamp = {speed=10,model = "models/metrostroi_train/81-717/lamps/lamp_panelspb_yb.mdl",z=-0.2,var="KVD"},
+        }},
+        {ID = "!LampLKT",x=219,y=43.8+8.8*2,w=10,h=4,tooltip="",model = {
+            name="SKT",lamp = {speed=10,model = "models/metrostroi_train/81-717/lamps/lamp_panelspb_yb.mdl",z=-0.2,var="KT"},
+        }},
+        {ID = "!LampDV",x=219,y=43.8+8.8*3,w=10,h=4,tooltip="",model = {
+            name="SDV",lamp = {speed=10,model = "models/metrostroi_train/81-717/lamps/lamp_panelspb_yb.mdl",z=-0.2,color=Color(175,250,20),var="DV"},
+        }},
+
+        {ID = "!SpeedFact1",x=133.1,y=73.6,w=23.7,h=8,tooltip="",model = {
+            name="SpeedFact1",model = "models/metrostroi_train/81-717/lamps/indicators.mdl",z=0.15,color=Color(175,250,20),skin=10,ang=90,
+        }},
+        {ID = "!SpeedFact2",x=133.1+23.7,y=73.6,w=23.7,h=8,tooltip="",model = {
+            name="SpeedFact2",model = "models/metrostroi_train/81-717/lamps/indicators.mdl",z=0.15,color=Color(175,250,20),skin=10,ang=90,
+        }},
+
+        {ID = "!ARSL20",x=140,y=83,w=5,h=10,tooltip="",model = {
+            name="SAL20",lamp = {speed=10,model = "models/metrostroi_train/81-717/lamps/triangle_red.mdl",z=-0.3,var="AR20"},
+        }},
+        {ID = "!ARSL40",x=140+4.3*2,y=83,w=5,h=10,tooltip="",model = {
+            name="SAL40",lamp = {speed=10,model = "models/metrostroi_train/81-717/lamps/triangle_yellow.mdl",z=-0.3,var="AR40"},
+        }},
+        {ID = "!ARSL60",x=140+4.3*(3+1.1),y=83,w=5,h=10,tooltip="",model = {
+            name="SAL60",lamp = {speed=10,model = "models/metrostroi_train/81-717/lamps/triangle_yellow.mdl",color=Color(175,250,20),z=-0.3,var="AR60"},
+        }},
+        {ID = "!ARSL70",x=140+4.3*(4+1.2),y=83,w=5,h=10,tooltip="",model = {
+            name="SAL70",lamp = {speed=10,model = "models/metrostroi_train/81-717/lamps/triangle_yellow.mdl",color=Color(175,250,20),z=-0.3,var="AR70"},
+        }},
+        {ID = "!ARSL80",x=140+4.3*(5+1.3),y=83,w=5,h=10,tooltip="",model = {
+            name="SAL80",lamp = {speed=10,model = "models/metrostroi_train/81-717/lamps/triangle_yellow.mdl",color=Color(175,250,20),z=-0.3,var="AR80"},
+        }},
+        --[[
+        {ID = "!LampLN",x=217-0.5*0 ,y=34.6 + 20.7*1,w=10,h=10,tooltip="",model = {
+            name="SHLN",lamp = {speed=16,model = "models/metrostroi_train/common/lamps/svetodiod2.mdl",color=Color(175,250,20),z=0,var="LN"},
+        }},
+        {ID = "!LampLRS",x=271.5-1*1,y=34.6 + 20.5*1,w=10,h=10,tooltip="",model = {
+            name="SHRS",lamp = {speed=16,model = "models/metrostroi_train/common/lamps/svetodiod2.mdl",color=Color(175,250,20),z=0,var="RS"},
+        }},]]
+    }
+}
+/*
 
 ENT.ButtonMap["Block2_2"] = {
     pos = Vector(450.4,10.0,1.3+5.35),
@@ -1071,6 +1183,7 @@ ENT.ButtonMap["Block2_1"] = {
         }},
     }
 }
+*/
 ENT.ButtonMap["BZOS_C"] = {
     pos = Vector(440.5,-62.15,-0.68),
     ang = Angle(0,180,90),
@@ -2126,16 +2239,28 @@ ENT.ClientProps["brake_cylinder"] = {
     ang = Angle(-62.299999,-33.400002,0.000000),
     hideseat = 0.2,
 }
-ENT.ClientProps["ampermeter"] = {
+-- ENT.ClientProps["ampermeter"] = {
+--     model = "models/metrostroi/81-717/volt_arrow.mdl",
+--     pos = Vector(452.269592,-30.540430,16.922098),
+--     ang = Angle(90.500000,0.000000,40.000000),
+--     hideseat = 0.2,
+-- }
+-- ENT.ClientProps["voltmeter"] = {
+--     model = "models/metrostroi/81-717/volt_arrow.mdl",
+--     pos = Vector(452.246277,-30.519978,12.287716),
+--     ang = Angle(90.500000,0.000000,40.000000),
+--     hideseat = 0.2,
+-- }
+ENT.ClientProps["new_ampermeter"] = {
     model = "models/metrostroi/81-717/volt_arrow.mdl",
-    pos = Vector(452.269592,-30.540430,16.922098),
-    ang = Angle(90.500000,0.000000,40.000000),
+    pos = Vector(449.799988,-33.349998,14.5),
+    ang = Angle(90,0,20),
     hideseat = 0.2,
 }
-ENT.ClientProps["voltmeter"] = {
+ENT.ClientProps["new_voltmeter"] = {
     model = "models/metrostroi/81-717/volt_arrow.mdl",
-    pos = Vector(452.246277,-30.519978,12.287716),
-    ang = Angle(90.500000,0.000000,40.000000),
+    pos = Vector(451.399994,-28.923000,14.300000),
+    ang = Angle(90,0,20),
     hideseat = 0.2,
 }
 ENT.ButtonMap["HVMeters"] = {
@@ -2328,18 +2453,18 @@ ENT.ClientProps["door3x0"] = {
     ang = Angle(0,90,0),
     hide = 2.0,
 }
-ENT.ClientProps["Lamp_RTM1"] = {
-    model = "models/metrostroi_train/81-717/rtmlamp.mdl",
-    pos = Vector(414.367554,-32.449749,6.717192),
-    ang = Angle(0.000000,180.000000,0.000000),
-    hideseat = 0.2,
-}
-ENT.ClientProps["Lamp_RTM2"] = {
-    model = "models/metrostroi_train/81-717/rtmlamp.mdl",
-    pos = Vector(447.35,-32.82,-0.90),
-    ang = Angle(0,-5,0),
-    hideseat = 0.2,
-}
+-- ENT.ClientProps["Lamp_RTM1"] = {
+--     model = "models/metrostroi_train/81-717/rtmlamp.mdl",
+--     pos = Vector(414.367554,-32.449749,6.717192),
+--     ang = Angle(0.000000,180.000000,0.000000),
+--     hideseat = 0.2,
+-- }
+-- ENT.ClientProps["Lamp_RTM2"] = {
+--     model = "models/metrostroi_train/81-717/rtmlamp.mdl",
+--     pos = Vector(447.35,-32.82,-0.90),
+--     ang = Angle(0,-5,0),
+--     hideseat = 0.2,
+-- }
 ENT.ClientProps["Lamps_cab1"] = {
     model = "models/metrostroi_train/81-717/lamps/lamp_cabine1.mdl",
     pos = Vector(0,0,0),
@@ -2428,8 +2553,8 @@ ENT.Lights = {
     [42] = { "headlight",Vector(450.3,13.1,-4.4+5.35),Angle(-136.613632-33,-95.636734-28,137.434570),Color(255,125,25),farz = 8,nearz = 2,shadows = 0,brightness = 1.5,fov = 120 },
     [43] = { "headlight",Vector(451.9-3,3.6+1,3.35+0.5),Angle(0,-90,0),Color(255,125,25),farz = 8,nearz = 2,shadows = 0,brightness = 1.5,fov = 80 },
     -- Voltmeter
-    [44] = { "headlight",Vector(450.273468,-32.306019,13.236823),Angle(-18.000000,25.541767,-90.600349),Color(255,145,25),farz = 10,nearz = 2,shadows = 1,brightness = 1,fov = 100 },
-    [45] = { "headlight",Vector(450.273468,-32.306019,18.236823),Angle(-12.000000,25.541767,-90.600349),Color(255,125,25),farz = 10,nearz = 2,shadows = 1,brightness = 1,fov = 100 },
+    -- [44] = { "headlight",Vector(450.273468,-32.306019,13.236823),Angle(-18.000000,25.541767,-90.600349),Color(255,145,25),farz = 10,nearz = 2,shadows = 1,brightness = 1,fov = 100 },
+    -- [45] = { "headlight",Vector(450.273468,-32.306019,18.236823),Angle(-12.000000,25.541767,-90.600349),Color(255,125,25),farz = 10,nearz = 2,shadows = 1,brightness = 1,fov = 100 },
 }
 
 function ENT:Initialize()
@@ -2509,8 +2634,8 @@ function ENT:Think()
     self:SetLightPower(41,self:GetPackedBool("PanelLights"))
     self:SetLightPower(42,self:GetPackedBool("PanelLights"))
 
-    self:SetLightPower(44,self:GetPackedBool("PanelLights"))
-    self:SetLightPower(45,self:GetPackedBool("PanelLights"))
+    -- self:SetLightPower(44,self:GetPackedBool("PanelLights"))
+    -- self:SetLightPower(45,self:GetPackedBool("PanelLights"))
 
     local HL1 = self:Animate("Headlights1",self:GetPackedBool("Headlights1") and 1 or 0,0,1,6,false)
     local HL2 = self:Animate("Headlights2",self:GetPackedBool("Headlights2") and 1 or 0,0,1,6,false)
@@ -2585,35 +2710,26 @@ function ENT:Think()
 
     self:Animate("brake334",self:GetPackedRatio("CranePosition")/5,0.35,0.65,256,24)
     self:Animate("brake013",        Cpos[self:GetPackedRatio("CranePosition")] or 0, 0.03, 0.458,  256,24)
-
-    self:Animate("speed",self:GetPackedRatio("Speed"),0.881+0.004,0.609-0.008,nil,nil,256,2,0.01)
-
-    local ARSType = self:GetNW2Int("ARSType",1)
-    if self.ARSType ~= ARSType then
-        self:RemoveCSEnt("ars_mvm")
-        self.ARSType = ARSType
-    end
+    
     if self.KVType ~= self:GetNW2Int("KVType",1) then
         self:RemoveCSEnt("Controller")
         self.KVType = self:GetNW2Int("KVType",1)
     end
-
-    self:ShowHide("speed",ARSType>=4)
-    self:HidePanel("Block2_2",ARSType~=1)
-    self:HidePanel("Block2_1",ARSType~=2 and ARSType~=3)
-    self:HidePanel("Block2_3",ARSType<4)
+    -- self:HidePanel("Block2_2",ARSType~=1)
+    -- self:HidePanel("Block2_1",ARSType~=2 and ARSType~=3)
+    -- self:HidePanel("Block2_3",ARSType<4)
     self:ShowHide("SSpeed1",self:GetPackedBool("LUDS"))
     self:ShowHide("SSpeed2",self:GetPackedBool("LUDS"))
-    self:ShowHide("RSpeed1",self:GetPackedBool("LUDS"))
-    self:ShowHide("RSpeed2",self:GetPackedBool("LUDS"))
-    self:SetLightPower(43,ARSType>=4 and self:GetPackedBool("PanelLights"))
     self:ShowHide("new_voltm_light", self:GetPackedBool("PanelLights"))
-    local speed = self:GetPackedRatio("Speed")*100.0
+    self:ShowHide("SpeedFact1",self:GetPackedBool("LUDS"))
+    self:ShowHide("SpeedFact2",self:GetPackedBool("LUDS"))
     if self:GetPackedBool("LUDS") then
-        if ARSType == 1 and IsValid(self.ClientEnts["SSpeed1"])then self.ClientEnts["SSpeed1"]:SetSkin(math.floor(speed)%10) end
-        if ARSType == 1 and IsValid(self.ClientEnts["SSpeed2"])then self.ClientEnts["SSpeed2"]:SetSkin(math.floor(speed/10)) end
-        if (ARSType == 2 or ARSType == 3) and IsValid(self.ClientEnts["RSpeed1"])then self.ClientEnts["RSpeed1"]:SetSkin(math.floor(speed)%10) end
-        if (ARSType == 2 or ARSType == 3) and IsValid(self.ClientEnts["RSpeed2"])then self.ClientEnts["RSpeed2"]:SetSkin(math.floor(speed/10)) end
+        local speed = self:GetPackedRatio("Speed")*100.0
+        if IsValid(self.ClientEnts["SSpeed1"])then self.ClientEnts["SSpeed1"]:SetSkin(math.floor(speed)%10) end
+        if IsValid(self.ClientEnts["SSpeed2"])then self.ClientEnts["SSpeed2"]:SetSkin(math.floor(speed/10)) end
+        for i=1,2 do
+            if IsValid(self.ClientEnts["SpeedFact"..i]) then self.ClientEnts["SpeedFact"..i]:SetSkin(math.ceil(math.Clamp((speed-4)/5-(i-1)*10,0,10))) end
+        end
     end
 
     -- local handrails = self:GetNW2Bool("HandRails")
@@ -2653,8 +2769,8 @@ function ENT:Think()
     local lamps_rtm = self:Animate("lamps_rtm",self:GetPackedBool("VPR") and 1 or 0,0,1,8,false)
     self:SetSoundState("vpr",lamps_rtm>0 and 1 or 0,1)
 
-    self:ShowHideSmooth("Lamp_RTM1",not dot5 and lamps_rtm or 0)
-    self:ShowHideSmooth("Lamp_RTM2",dot5 and lamps_rtm or 0)
+    -- self:ShowHideSmooth("Lamp_RTM1",not dot5 and lamps_rtm or 0)
+    -- self:ShowHideSmooth("Lamp_RTM2",dot5 and lamps_rtm or 0)
 
     -- self:ShowHide("mask222_mvm",not mask and not lvz and not mask22)
     -- self:ShowHide("mask222_lvz",not mask and lvz and not mask22)
@@ -2665,12 +2781,12 @@ function ENT:Think()
     self:ShowHide("1:KVTRSet",not lvz)
     self:ShowHide("2:KVTSet",lvz)
     self:ShowHide("2:KVTRSet",lvz)
-    self:ShowHideSmooth("Headlights222_1",(not mask and not mask22) and HL1 or 0)
-    self:ShowHideSmooth("Headlights222_2",(not mask and not mask22) and HL2 or 0)
-    self:ShowHideSmooth("Headlights141_1",(mask and not mask22) and HL1 or 0)
-    self:ShowHideSmooth("Headlights141_2",(mask and not mask22) and HL2 or 0)
-    self:ShowHideSmooth("Headlights22_1",(mask22 and not mask) and HL1 or 0)
-    self:ShowHideSmooth("Headlights22_2",(mask22 and not mask) and HL2 or 0)
+    self:ShowHideSmooth("Headlights_1",HL1)
+    self:ShowHideSmooth("Headlights_2",HL2)
+    -- self:ShowHideSmooth("Headlights141_1",(mask and not mask22) and HL1 or 0)
+    -- self:ShowHideSmooth("Headlights141_2",(mask and not mask22) and HL2 or 0)
+    -- self:ShowHideSmooth("Headlights22_1",(mask22 and not mask) and HL1 or 0)
+    -- self:ShowHideSmooth("Headlights22_2",(mask22 and not mask) and HL2 or 0)
 
     self:Animate("PB",self:GetPackedBool("PB") and 1 or 0,0,0.2,  12,false)
     self:Animate("UAVALever",   self:GetPackedBool("UAVA") and 1 or 0,     0,0.6, 128,  3,false)
@@ -2702,9 +2818,11 @@ function ENT:Think()
     self:Animate("train_line",self:GetPackedRatio("TLPressure"),0.143,0.88,256,0)--,0.01)
     self:Animate("brake_cylinder",self:GetPackedRatio("BCPressure"),0.134,0.874,256,0)--,0.03)
 
-    self:Animate("voltmeter",self:GetPackedRatio("EnginesVoltage"),0.396,0.658,256,0.2,false)
+    -- self:Animate("voltmeter",self:GetPackedRatio("EnginesVoltage"),0.396,0.658,256,0.2,false)
     self:Animate("volt1",self:GetPackedRatio("BatteryVoltage"),0.625,0.376,256,0.2,false)
-    self:Animate("ampermeter",self:GetPackedRatio("EnginesCurrent"),0.39,0.655,256,0.2,false)
+    -- self:Animate("ampermeter",self:GetPackedRatio("EnginesCurrent"),0.39,0.655,256,0.2,false)
+    self:Animate("new_ampermeter",self:GetPackedRatio("EnginesCurrent"),0.39,0.655,256,0.2,false)
+    self:Animate("new_voltmeter",self:GetPackedRatio("EnginesVoltage"),0.396,0.658,256,0.2,false)
 
     local otsek1 = self:Animate("door_otsek1",self:GetPackedBool("OtsekDoor1") and 1 or 0,0,0.25,4,0.5)
     local otsek2 = self:Animate("door_otsek2",self:GetPackedBool("OtsekDoor2") and 1 or 0,0,0.25,4,0.5)
