@@ -1,7 +1,7 @@
 "VertexLitGeneric"
 {
 
-	"$basetexture" "models/metrostroi_train/81-717/glass_headlight_kiev"
+	"$basetexture" "models/metrostroi_train/81-717/glass_pds"
 	"$model" "1"
  	"$alphatest" "1"
 	"$allowalphatocoverage" "1"
