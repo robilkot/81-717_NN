@@ -259,6 +259,19 @@ ENT.ClientProps["cabine_nn_add"] = {
     ang = Angle(0,0,0),
     hide=2,
 }
+ENT.ClientProps["new_voltm"] = {
+    model = "models/dev4you/new_voltm/new_voltm.mdl",
+    pos = Vector(0,0,0),
+    ang = Angle(0,0,0),
+    hide=2,
+}
+ENT.ClientProps["new_voltm_light"] = {
+    model = "models/dev4you/new_voltm/new_voltm_light.mdl",
+    pos = Vector(0,0,0),
+    ang = Angle(0,0,0),
+    hide=2,
+}
+-- 
 
 local KVs = {
     "models/metrostroi_train/81-717/kv_black.mdl",
@@ -803,8 +816,7 @@ ENT.ButtonMap["RouteNumberScreen"] = {
     height = 128,
     scale = 0.07,
 
-    hideseat=0.2,
-    hide=true,
+    nohide = true,
 }
 
 
@@ -1060,7 +1072,7 @@ ENT.ButtonMap["Block2_1"] = {
     }
 }
 ENT.ButtonMap["BZOS_C"] = {
-    pos = Vector(440.2,-62.15,-1.1),
+    pos = Vector(440.5,-62.15,-0.68),
     ang = Angle(0,180,90),
     width = 16,
     height = 60,
@@ -1856,30 +1868,25 @@ ENT.ClientSounds["RearTrainLineIsolation"] = {{"RearTrain",function() return "di
 
 
 ENT.ButtonMap["GV"] = {
-    pos = Vector(170-3-9.5,50+20,-60+2),
-    ang = Angle(0,225-15,90),
-    width = 260,
-    height = 260,
+    pos = Vector(130,50+10,-70),
+    ang = Angle(0,180,90),
+    width = 120,
+    height = 120,
     scale = 0.1,
     buttons = {
-        {ID = "GVToggle",x=0, y=0, w= 260,h = 260, tooltip="", model = {
-            var="GV",sndid = "gv",
+        {ID = "GVToggle",x=0, y=0, w= 120,h = 120, tooltip="", model = {
+            var="GV",sndid = "gv_wrench",
             sndvol = 0.8,sndmin = 80, sndmax = 1e3/3, sndang = Angle(-90,0,0),
             snd = function(val) return val and "gv_f" or "gv_b" end,
         }},
     }
 }
-ENT.ClientProps["gv"] = {
-    model = "models/metrostroi/81-717/gv.mdl",
-    pos = Vector(153.5-3-9.5,36+20,-78+2),
-    ang = Angle(-90,90,-90),
-    color = Color(150,255,255),
-    hide = 0.5,
-}
+local gv_pos = Vector(153.5-3-26,56.4,-76)
+
 ENT.ClientProps["gv_wrench"] = {
     model = "models/metrostroi_train/reversor/reversor_classic.mdl",
-    pos = ENT.ClientProps["gv"].pos,
-    ang = Angle(-90,0,0),
+    pos = gv_pos,
+    ang = Angle(-90,180,90),
     hide = 0.5,
 }
 
@@ -2347,13 +2354,13 @@ ENT.ClientProps["Lamps_cab2"] = {
 }
 ENT.ClientProps["Lamps2_cab1"] = {
     model = "models/metrostroi_train/81-717/lamps/lamp_cabine1.mdl",
-    pos = Vector(0.5,0,-0.7),
+    pos = Vector(0,0,-0),
     ang = Angle(0,0,0),
     hideseat = 0.9,
 }
 ENT.ClientProps["Lamps2_cab2"] = {
     model = "models/metrostroi_train/81-717/lamps/lamp_cabine2.mdl",
-    pos = Vector(0,0,-0.8),
+    pos = Vector(0,0,-0),
     ang = Angle(0,0,0),
     hideseat = 0.9,
 }
@@ -2600,6 +2607,7 @@ function ENT:Think()
     self:ShowHide("RSpeed1",self:GetPackedBool("LUDS"))
     self:ShowHide("RSpeed2",self:GetPackedBool("LUDS"))
     self:SetLightPower(43,ARSType>=4 and self:GetPackedBool("PanelLights"))
+    self:ShowHide("new_voltm_light", self:GetPackedBool("PanelLights"))
     local speed = self:GetPackedRatio("Speed")*100.0
     if self:GetPackedBool("LUDS") then
         if ARSType == 1 and IsValid(self.ClientEnts["SSpeed1"])then self.ClientEnts["SSpeed1"]:SetSkin(math.floor(speed)%10) end

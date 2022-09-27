@@ -108,7 +108,7 @@ ENT.ClientProps["body_additional"] = {
 --     hide=2,
 -- }
 ENT.ClientProps["seats_cap"] = {
-    model = "models/metrostroi_train/NN-717/NN_714_otsek.mdl",
+    model = "models/metrostroi_train/NN-717/NN_714_otsek1.mdl",
     pos = Vector(0,0,0),
     ang = Angle(0,0,0),
     hideseat=0.8,
@@ -119,18 +119,24 @@ ENT.ClientProps["seats_cap_o"] = {
     ang = Angle(0,70,-70),
     hideseat=0.8,
 }
-ENT.ClientProps["otsek_cap_l"] = {
-    model = "models/metrostroi_train/81-717/otsek_cap_l.mdl",
+ENT.ClientProps["seats_cap_2"] = {
+    model = "models/metrostroi_train/NN-717/NN_714_otsek.mdl",
     pos = Vector(0,0,0),
     ang = Angle(0,0,0),
     hideseat=0.8,
 }
-ENT.ClientProps["otsek_cap_r"] = {
-    model = "models/metrostroi_train/81-717/otsek_cap_r.mdl",
-    pos = Vector(0,0,0),
-    ang = Angle(0,0,0),
-    hideseat=0.8,
-}
+-- ENT.ClientProps["otsek_cap_l"] = {
+--     model = "models/metrostroi_train/81-717/otsek_cap_l.mdl",
+--     pos = Vector(0,0,0),
+--     ang = Angle(0,0,0),
+--     hideseat=0.8,
+-- }
+-- ENT.ClientProps["otsek_cap_r"] = {
+--     model = "models/metrostroi_train/81-717/otsek_cap_r.mdl",
+--     pos = Vector(0,0,0),
+--     ang = Angle(0,0,0),
+--     hideseat=0.8,
+-- }
 
 ENT.ButtonMap["FrontPneumatic"] = {
     pos = Vector(470-9,-45.0,-58.0+5),
@@ -901,12 +907,15 @@ function ENT:Think()
     -- self:ShowHide("seats_old",not newSeats)
     -- self:ShowHide("seats_new",newSeats)
 
+    -- models/metrostroi_train/NN-717/NN_714_otsek1.mdl
+
     local capOpened = self:GetPackedBool("CouchCap")
     local c013 = self:GetPackedBool("Crane013")
-    self:ShowHide("seats_cap_o",capOpened and not newSeats)
-    self:ShowHide("seats_cap",not capOpened and not newSeats)
-    self:HidePanel("couch_cap",capOpened)
-    self:HidePanel("couch_cap_o",not capOpened)
+    self:ShowHide("seats_cap_o",capOpened)
+    self:ShowHide("seats_cap_2", not capOpened)
+    self:ShowHide("seats_cap",not capOpened)
+    -- self:HidePanel("couch_cap",capOpened)
+    -- self:HidePanel("couch_cap_o",not capOpened)
     self:HidePanel("AV_S",not capOpened)
     self:HidePanel("AV_T",not capOpened)
     self:HidePanel("Stopkran",not capOpened)

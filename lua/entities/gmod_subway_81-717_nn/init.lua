@@ -442,10 +442,10 @@ function ENT:TrainSpawnerUpdate()
     
     self:SetNW2Int("Crane",typ==1 and self:GetNW2Int("Cran") or 2)
 
-    local lampType = self:GetNW2Int("LampType")
-    local ARSType = self:GetNW2Int("ARSType")
-    local RingType = self:GetNW2Int("RingType")
-    local BPSNType = self:GetNW2Int("BPSNType")
+    local lampType = self:GetNW2Int("LampType") or 1
+    local ARSType = self:GetNW2Int("ARSType") or 1
+    local RingType = self:GetNW2Int("RingType") or 1
+    local BPSNType = self:GetNW2Int("BPSNType") or 1
     self:SetNW2Bool("HandRails",dot5)
     self:SetNW2Bool("Dot5",dot5)
     self:SetNW2Bool("LVZ",typ==2)
@@ -454,9 +454,6 @@ function ENT:TrainSpawnerUpdate()
     if ARSType == 1 then
         ARSType = math.ceil(math.random()*4+0.5)
     else ARSType = ARSType-1 end
-    local mask = self:GetNW2Int("MaskType",1)
-    self:SetNW2Bool("Mask",mask==3)
-    self:SetNW2Bool("Mask22",mask==1)
     self:SetNW2Int("ARSType",ARSType)
     self:SetNW2Int("KVType",math.ceil(math.random()*3+0.5))
     self:SetNW2Int("BPSNType",BPSNType==1 and math.ceil(math.random()*12+0.5) or BPSNType-1)
