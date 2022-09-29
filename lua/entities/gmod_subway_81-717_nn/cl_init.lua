@@ -825,6 +825,15 @@ ENT.ButtonMap["RouteNumberScreen"] = {
 
     nohide = true,
 }
+ENT.ButtonMap["LastStationScreen"] = {
+    pos = Vector(460,4.5,39),
+    ang = Angle(0,90,90.0),
+    width = 512,
+    height = 128,
+    scale = 0.07,
+
+    nohide = true,
+}
 ENT.ButtonMap["Block2"] = {
     pos = Vector(450.4+0.35,10.0,1.3+5.35),
     ang = Angle(0,-90,58),
@@ -3197,12 +3206,26 @@ function ENT:DrawPost(special)
         surface.SetDrawColor(255,255,255)
         surface.DrawTexturedRectRotated(256,64,512,128,0)
     end)
+
     self:DrawOnPanel("RouteNumberScreen", function(...)
         draw.NoTexture()
         surface.SetTextPos(0, 0)
         surface.SetFont("Metrostroi_717_NN_RouteNumber")
         surface.SetTextColor(0,255,0)
         surface.DrawText(self.RouteNumber.Number or "61")
+    end)
+
+    self:DrawOnPanel("LastStationScreen", function(...)
+        draw.NoTexture()
+
+        local str = self:GetNW2String("LastStation", "ОБКАТКА")
+
+        local w, h = surface.GetTextSize(str)
+
+        surface.SetFont("Metrostroi_717_NN_RouteNumber")
+        surface.SetTextPos(-w/2, 0)
+        surface.SetTextColor(0,255,0)
+        surface.DrawText(str)
     end)
 
     self:DrawOnPanel("AirDistributor",function()

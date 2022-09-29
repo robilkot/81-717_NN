@@ -817,7 +817,7 @@ function ENT:InitializeSystems()
     self:LoadSystem("ASNP_VV","81_71_ASNP_VV")
 
     self:LoadSystem("RouteNumber","81_717_NN_RouteNumber",2)
-    self:LoadSystem("LastStation","81_71_LastStation","717","destination")
+    self:LoadSystem("LastStation","81_717_NN_LastStation")
 end
 
 function ENT:PostInitializeSystems()
