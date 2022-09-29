@@ -930,7 +930,6 @@ ENT.Spawner = {
     {"Cran","Spawner.717.CranType","List",{"334","013"}},
     {"Announcer","Spawner.717.Announcer","List",Announcer},
     {"LampType","Spawner.717.LampType","List",{"Spawner.717.Common.Random","Spawner.717.Lamp.LPV02","Spawner.717.Lamp.LLV01"}},
-    {"ARSType","Spawner.717.ARS","List",{"Spawner.717.Common.Random","Spawner.717.ARS.1","Spawner.717.ARS.2","Spawner.717.ARS.3","Spawner.717.ARS.4","Spawner.717.ARS.5"}},
     Metrostroi.Skins.GetTable("Texture","Spawner.Texture",false,"train"),
     Metrostroi.Skins.GetTable("PassTexture","Spawner.PassTexture",false,"pass"),
     Metrostroi.Skins.GetTable("CabTexture","Spawner.CabTexture",false,"cab"),
