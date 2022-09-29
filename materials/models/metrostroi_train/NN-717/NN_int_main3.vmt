@@ -7,4 +7,6 @@
 	"$phong" "1"
     "$phongboost" "0.1"
     "$phongfresnelranges" "[1 1 1]"
+	
+	$alphatest 1
 }
