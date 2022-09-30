@@ -322,7 +322,7 @@ ENT.ClientProps["body_gray"] = {
 }
 
 ENT.ClientProps["pult_mvm_classic"] = {
-    model = "models/metrostroi_train/81-717/pult/pult_mvm_classic.mdl",
+    model = "models/metrostroi_train/NN-717/NN_717_pult.mdl",
     pos = Vector(0,0,0),
     ang = Angle(0,0,0),
     color = Color(255,255,255),
@@ -2840,8 +2840,8 @@ function ENT:Think()
     self:Animate("new_ampermeter",self:GetPackedRatio("EnginesCurrent"),0.39,0.655,256,0.2,false)
     self:Animate("new_voltmeter",self:GetPackedRatio("EnginesVoltage"),0.396,0.658,256,0.2,false)
 
-    local otsek1 = self:Animate("door_otsek1",self:GetPackedBool("OtsekDoor1") and 1 or 0,0,0.25,4,0.5)
-    local otsek2 = self:Animate("door_otsek2",self:GetPackedBool("OtsekDoor2") and 1 or 0,0,0.25,4,0.5)
+    local otsek1 = self:Animate("door_otsek1",self:GetPackedBool("OtsekDoor1") and 1 or 0,0,1,4,0.5)
+    local otsek2 = self:Animate("door_otsek2",self:GetPackedBool("OtsekDoor2") and 1 or 0,0,1,4,0.5)
     self:HidePanel("AV_S",not dot5 or otsek2<=0)
     local door1 = self:Animate("door1",self:GetPackedBool("RearDoor") and 1 or 0,0,0.25,4,0.5)
     local door2 = self:Animate("door2",self:GetPackedBool("PassengerDoor") and 1 or 0,1,0.8,4,0.5)
