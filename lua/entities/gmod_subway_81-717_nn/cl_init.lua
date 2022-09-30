@@ -234,15 +234,15 @@ ENT.ClientProps["otsek_cap_r"] = {
 }
 ]]
 ENT.ClientProps["door_otsek1"] = {
-    model = "models/metrostroi_train/81-717/door_otsek1.mdl",
-    pos = Vector(375.35,-15.324,5.167),
-    ang = Angle(0,-90,0),
+    model = "models/metrostroi_train/NN-717/NN_717_int_door1.mdl",
+    pos = Vector(0,0,0),
+    ang = Angle(0,0,0),
     hideseat=1.7,
 }
 ENT.ClientProps["door_otsek2"] = {
-    model = "models/metrostroi_train/81-717/door_otsek2.mdl",
-    pos = Vector(375.35,-59.65,5.167),
-    ang = Angle(0,-90,0),
+    model = "models/metrostroi_train/NN-717/NN_717_int_door2.mdl",
+    pos = Vector(0,0,0),
+    ang = Angle(0,0,0),
     hideseat=1.7,
 }
 ENT.ClientProps["door1"] = {
@@ -3169,7 +3169,7 @@ surface.CreateFont("Metrostroi_717_NN_RouteNumber", {
 	weight = 500,
 	blursize = 0,
 	scanlines = 0,
-	antialias = true,
+	antialias = false,
 	underline = false,
 	italic = false,
 	strikeout = false,
@@ -3186,7 +3186,27 @@ end
 function ENT:DrawPost(special)
     --local dc = render.GetLightColor(self:LocalToWorld(Vector(460.0,0.0,5.0)))
 
+
+
     local distance = self:GetPos():Distance(LocalPlayer():GetPos())
+
+    if distance < 4096 then
+        
+        self:DrawOnPanel("LastStationScreen", function(...)
+            draw.NoTexture()
+
+            local str = self:GetNW2String("LastStation", "ОБКАТКА")
+
+            local w, h = surface.GetTextSize(str)
+
+            surface.SetFont("Metrostroi_717_NN_RouteNumber")
+            surface.SetTextPos(-w/2, 0)
+            surface.SetTextColor(0,255,0)
+            surface.DrawText(str)
+        end)
+
+    end
+
     if distance > 1024 or special then return end
 
     self.RTMaterial:SetTexture("$basetexture",self.ASNP)
@@ -3213,19 +3233,6 @@ function ENT:DrawPost(special)
         surface.SetFont("Metrostroi_717_NN_RouteNumber")
         surface.SetTextColor(0,255,0)
         surface.DrawText(self.RouteNumber.Number or "61")
-    end)
-
-    self:DrawOnPanel("LastStationScreen", function(...)
-        draw.NoTexture()
-
-        local str = self:GetNW2String("LastStation", "ОБКАТКА")
-
-        local w, h = surface.GetTextSize(str)
-
-        surface.SetFont("Metrostroi_717_NN_RouteNumber")
-        surface.SetTextPos(-w/2, 0)
-        surface.SetTextColor(0,255,0)
-        surface.DrawText(str)
     end)
 
     self:DrawOnPanel("AirDistributor",function()
