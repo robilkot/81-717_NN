@@ -213,6 +213,13 @@ ENT.ClientProps["Headlights_2"] = {
     ang = Angle(0,0,0),
     nohide=true,
 }
+ENT.ClientProps["Headlights_glass"] = {
+    model = "models/metrostroi_train/81-717/mask_141_glass.mdl",
+    pos = Vector(0,0,0),
+    ang = Angle(0,0,0),
+    nohide=true,
+}
+
 
 ENT.ClientProps["RedLights"] = {
     model = "models/metrostroi_train/81-717/lamps/redlights.mdl",
