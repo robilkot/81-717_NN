@@ -159,7 +159,7 @@ ENT.ClientProps["brake_valve_013"] = {
 }
 ENT.ClientProps["lamps1"] = {
     model = "models/metrostroi_train/81-540b/minsk_lamp_type4.mdl",
-    pos = Vector(-100+9,0,0),
+    pos = Vector(-100+9,0,0.1),
     ang = Angle(0,90,0),
     hide=1.5,
 }
