@@ -82,15 +82,21 @@ ENT.ClientProps["schemes"] = {
 --         ent.LastStation.Reloaded = false
 --     end,
 -- }
-ENT.ButtonMap["LastStation"] = {
-    pos = Vector(457.7,-27.4,1.75),
-    ang = Angle(0,90,90),
-    width = 876,
-    height = 205,
+ENT.ButtonMap["EMU"] = {
+    pos = Vector(457,30,40),
+    ang = Angle(0,270,90),
+    width = 400,
+    height = 150,
     scale = 0.0625,
     buttons = {
-        {ID = "LastStation-",x=000,y=0,w=438,h=205, tooltip=""},
-        {ID = "LastStation+",x=438,y=0,w=438,h=205, tooltip=""},
+        {ID = "LastSTLeftSet",x=28, y=90, radius=8, tooltip = "ЭМУ: Предыдущая конечная",model = {
+            model = "models/metrostroi_train/81-720/button_round.mdl",
+            var="LastSTLeft",speed=12, vmin=0, vmax=0.9,
+            sndvol = 0.5,snd = function(val) return val and "pnm_button1_on" or "pnm_button1_off" end,
+            sndmin = 50,sndmax = 1e3,sndang = Angle(-90,0,0),
+        }},
+        -- {ID = "LastStation-",x=000,y=0,w=438,h=205, tooltip=""},
+        -- {ID = "LastStation+",x=438,y=0,w=438,h=205, tooltip=""},
     }
 }
 ENT.ClientProps["brake_valve_334"] = {
@@ -2771,7 +2777,6 @@ function ENT:Think()
     self:HidePanel("BZOS_R",not dot5)
     -- self:ShowHide("handrails_old",not dot5)
     -- self:ShowHide("handrails_new",dot5)
-    self.LastStation.EntityName = dot5 and "destination1" or "destination"
 
     local lamps_cab2 = self:Animate("lamps_cab2",self:GetPackedBool("EqLights") and 1 or 0,0,1,5,false)
     local lamps_cab1 = self:Animate("lamps_cab1",self:GetPackedBool("CabLights") and 1 or 0,0,1,5,false)
