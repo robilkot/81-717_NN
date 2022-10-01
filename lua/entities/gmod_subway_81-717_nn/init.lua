@@ -614,6 +614,10 @@ function ENT:Think()
         self.TestV = nil
         self.TestS = nil
     end--]]
+    
+    self:SetPackedBool("MTLight",self.ECRS.MTLight > 0)
+    self:SetPackedBool("MTRed",self.ECRS.MTRed > 0)
+    self:SetPackedBool("MTGreen",self.ECRS.MTGreen > 0)
     self:SetLightPower(30,brightness > 0,brightness*1.2)
     self:SetLightPower(31,brightness > 0,brightness*1.2)
     -- self:SetLightPower(32,brightness > 0,brightness)

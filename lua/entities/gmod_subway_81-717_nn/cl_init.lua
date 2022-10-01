@@ -419,6 +419,57 @@ ENT.ClientProps["ars_mvm_old_yellow"] = {
     hideseat=0.8,
 }--]]
 
+
+ENT.ButtonMap["ECRSScreen"] = {
+    pos = Vector(448,-38.3,9.3),
+    ang = Angle(0,-115.5,90),
+    width = 57,
+    height = 44,
+    scale = 0.012,
+    hideseat=0.2,
+}
+ENT.ClientProps["ecrs_light"] = {
+    model = "models/metrostroi_train/81-5401/5401_cab_ecrs_light.mdl",
+    pos = Vector(-20.8,-13.17,-3.82),
+    ang = Angle(0,0,0),
+    hideseat=1,
+}
+ENT.ButtonMap["Motorolla"] = {
+    pos = Vector(470.12,-22.1,13.8),
+    ang = Angle(0,-115.5,90),
+    width = 180,
+    height = 60,
+    scale = 0.0625,
+    hideseat=0.2,
+
+    buttons = {
+		{ID = "ECRS_CancelSet",x=125, y=15, radius = 8, tooltip="Отмена/Вкл./Выкл.", model = {
+			z=1,ang=Angle(-90,0,0),
+			var = "ECRS_Cancel",speed=12,
+		}},				
+		{ID = "ECRS_BRTSet",x=165, y=50, radius = 4.5, tooltip="Яркость", model = {
+			z=1,ang=Angle(-90,0,0),
+			var = "ECRS_BRT",speed=12,
+		}},
+        {ID = "ECRS_F1Set",x=112, y=18.5, radius = 4.5, tooltip="Отмена", model = {
+            z=1,ang=Angle(-90,0,0),
+            var = "ECRS_F1",speed=12,
+        }}, 
+        {ID = "ECRS_F2Set",x=112, y=18.5+25, radius = 4,5, tooltip="Выбор", model = {
+            z=1,ang=Angle(-90,0,0),
+            var = "ECRS_F2",speed=12,
+        }}, 
+        {ID = "ECRS_leftSet",x=117.2, y=30.5, radius = 3.5, tooltip="Влево", model = {
+            z=1,ang=Angle(-90,0,0),
+            var = "ECRS_left",speed=12,
+        }}, 
+        {ID = "ECRS_rightSet",x=117.2+11, y=30.5, radius = 3.5, tooltip="Вправо", model = {
+            z=1,ang=Angle(-90,0,0),
+            var = "ECRS_right",speed=12,
+        }}, 
+    }
+}
+ENT.ButtonMap["Motorolla"].pos = ENT.ButtonMap["Motorolla"].pos + Vector(-20.9,-13.3,-3.900000)
 --var="ZS",vmin=0,vmax=1,min=0,max=1,speed=16,damping=false,
 -- Main panel
 ENT.ButtonMap["Block5_6"] = {
@@ -2635,6 +2686,7 @@ function ENT:Initialize()
     --self.Train:SetPackedRatio("EmergencyBrakeValve_dPdT",leak)
     self.RRIScreen = self:CreateRT("717RRI",128,128)
     self.IGLA = self:CreateRT("717IGLA",512,128)
+	self.ECRSScr = self:CreateRT("7171PECRS",256,256)
     self.LeftMirror = self:CreateRT("LeftMirror",128,256)
     self.RightMirror = self:CreateRT("RightMirror",128,256)
 
@@ -2841,6 +2893,9 @@ function ENT:Think()
     self:HidePanel("BZOS_R",not dot5)
     -- self:ShowHide("handrails_old",not dot5)
     -- self:ShowHide("handrails_new",dot5)
+
+    
+    self:ShowHideSmooth("ecrs_light", self:Animate("ecrslight",self:GetPackedBool("MTLight") and 1 or 0,0,1,16,false))
 
     local lamps_cab2 = self:Animate("lamps_cab2",self:GetPackedBool("EqLights") and 1 or 0,0,1,5,false)
     local lamps_cab1 = self:Animate("lamps_cab1",self:GetPackedBool("CabLights") and 1 or 0,0,1,5,false)
@@ -3290,6 +3345,13 @@ function ENT:DrawPost(special)
         surface.DrawTexturedRectRotated(256,64,512,128,0)
     end)
 
+    
+	self.RTMaterial:SetTexture("$basetexture", self.ECRSScr)
+    self:DrawOnPanel("ECRSScreen",function(...)
+        surface.SetMaterial(self.RTMaterial)
+        surface.SetDrawColor(255,255,255)
+        surface.DrawTexturedRectRotated(128,178,256,340,0)
+    end)    
 
     self:DrawOnPanel("AirDistributor",function()
         draw.DrawText(self:GetNW2Bool("AD") and "Air Distributor ON" or "Air Distributor OFF","Trebuchet24",0,0,Color(0,0,0,255))

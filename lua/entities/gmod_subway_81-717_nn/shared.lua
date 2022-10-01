@@ -814,6 +814,7 @@ function ENT:InitializeSystems()
     self:LoadSystem("Announcer","81_71_Announcer", "AnnouncementsASNP")
     self:LoadSystem("RRI","81_71_RRI")
     self:LoadSystem("RRI_VV","81_71_RRI_VV")
+	self:LoadSystem("ECRS","81_717_NN_ECRS")
 
     self:LoadSystem("RouteNumber","81_717_NN_RouteNumber",2)
     self:LoadSystem("LastStation","81_717_NN_LastStation")
