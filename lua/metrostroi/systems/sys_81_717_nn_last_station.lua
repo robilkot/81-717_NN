@@ -16,8 +16,9 @@ end
 if TURBOSTROI then return end
 
 if SERVER then
-    function TRAIN_SYSTEM:TriggerInput(name,value)
-        
+    function TRAIN_SYSTEM:TrigerInput(name,value)
+        if self.Train.VB.Value < 0.5 then return end
+
         local tbl = NN_717.Lasts
 
         if tbl and name=="+" and value>0 then

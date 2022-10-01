@@ -64,24 +64,24 @@ ENT.ClientProps["schemes"] = {
         ent.PassSchemesDone = false
     end,
 }
-ENT.ClientProps["destination"] = {
-    model = "models/metrostroi_train/81-717/labels/destination.mdl",
-    pos = Vector(-0.5,0,0),
-    ang = Angle(0,0,0),
-    hide=2,
-    callback = function(ent)
-        ent.LastStation.Reloaded = false
-    end,
-}
-ENT.ClientProps["destination1"] = {
-    model = "models/metrostroi_train/81-717/labels/destination.mdl",
-    pos = Vector(-0.3,0,0),
-    ang = Angle(0,0,0),
-    hide=2,
-    callback = function(ent)
-        ent.LastStation.Reloaded = false
-    end,
-}
+-- ENT.ClientProps["destination"] = {
+--     model = "models/metrostroi_train/81-717/labels/destination.mdl",
+--     pos = Vector(-0.5,0,0),
+--     ang = Angle(0,0,0),
+--     hide=2,
+--     callback = function(ent)
+--         ent.LastStation.Reloaded = false
+--     end,
+-- }
+-- ENT.ClientProps["destination1"] = {
+--     model = "models/metrostroi_train/81-717/labels/destination.mdl",
+--     pos = Vector(-0.3,0,0),
+--     ang = Angle(0,0,0),
+--     hide=2,
+--     callback = function(ent)
+--         ent.LastStation.Reloaded = false
+--     end,
+-- }
 ENT.ButtonMap["LastStation"] = {
     pos = Vector(457.7,-27.4,1.75),
     ang = Angle(0,90,90),
@@ -106,17 +106,18 @@ ENT.ClientProps["brake_valve_013"] = {
     hideseat=1,
 }
 ENT.ClientProps["lamps1"] = {
-    model = "models/metrostroi_train/81-717/lamps_type1.mdl",
-    pos = Vector(0,0,0),
-    ang = Angle(0,0,0),
+    model = "models/metrostroi_train/81-540b/minsk_lamp_type4.mdl",
+    pos = Vector(-100+9,0,0),
+    ang = Angle(0,90,0),
     hide=1.5,
 }
-ENT.ClientProps["lamps2"] = {
-    model = "models/metrostroi_train/81-717/lamps_type2.mdl",
-    pos = Vector(0,0,0),
-    ang = Angle(0,0,0),
-    hide=1.5,
-}
+-- ENT.ClientProps["lamps1"] = {
+--     model = "models/metrostroi_train/81-540b/minsk_lamp_type4_int.mdl",
+--     pos = Vector(-27,0,0),
+--     ang = Angle(0,90,0),
+--     hide=1.5,
+-- }
+
 -- ENT.ClientProps["handrails_old"] = {
 --     model = "models/metrostroi_train/81-717/handlers_old.mdl",
 --     pos = Vector(0,0,0),
@@ -2088,33 +2089,33 @@ ENT.ButtonMap["Route"] = {
         {ID = "RouteNumber2-",x=76.5*1,y=65,w=76.5,h=65,tooltip=""},
     }
 }
-ENT.ClientProps["route"] = {
-    model = "models/metrostroi_train/common/routes/ezh/route_holder.mdl",
-    pos = Vector(-8,0,-5.65),
-    ang = Angle(0,1,0),
-    hide = 2,
-}
+-- ENT.ClientProps["route"] = {
+--     model = "models/metrostroi_train/common/routes/ezh/route_holder.mdl",
+--     pos = Vector(-8,0,-5.65),
+--     ang = Angle(0,1,0),
+--     hide = 2,
+-- }
 
-ENT.ClientProps["route1"] = {
-    model = "models/metrostroi_train/common/routes/ezh/route_number1.mdl",
-    pos = ENT.ClientProps["route"].pos,
-    ang = ENT.ClientProps["route"].ang,
-    skin=6,
-    hide = 2,
-    callback = function(ent)
-        ent.RouteNumber.Reloaded = false
-    end,
-}
-ENT.ClientProps["route2"] = {
-    model = "models/metrostroi_train/common/routes/ezh/route_number2.mdl",
-    pos = ENT.ClientProps["route"].pos,
-    ang = ENT.ClientProps["route"].ang,
-    skin=1,
-    hide = 2,
-    callback = function(ent)
-        ent.RouteNumber.Reloaded = false
-    end,
-}
+-- ENT.ClientProps["route1"] = {
+--     model = "models/metrostroi_train/common/routes/ezh/route_number1.mdl",
+--     pos = ENT.ClientProps["route"].pos,
+--     ang = ENT.ClientProps["route"].ang,
+--     skin=6,
+--     hide = 2,
+--     callback = function(ent)
+--         ent.RouteNumber.Reloaded = false
+--     end,
+-- }
+-- ENT.ClientProps["route2"] = {
+--     model = "models/metrostroi_train/common/routes/ezh/route_number2.mdl",
+--     pos = ENT.ClientProps["route"].pos,
+--     ang = ENT.ClientProps["route"].ang,
+--     skin=1,
+--     hide = 2,
+--     callback = function(ent)
+--         ent.RouteNumber.Reloaded = false
+--     end,
+-- }
 
 ENT.ButtonMap["CabinDoor"] = {
     pos = Vector(414.5,64,56.7),
@@ -2542,25 +2543,6 @@ for i = 0,11 do
         hideseat = 1.1,
     }
 end
-for i = 0,24 do
-    --[[local r = 15--math.random()*15
-    local g = 15--b+math.random()*(15-b)
-    if math.random() > 0.4 then
-        r = math.random()*15
-        g = r
-    else
-        r = 15
-        g = -20+math.random()*20
-    end--]]
-    ENT.ClientProps["lamp2_"..i+1] = {
-        model = "models/metrostroi_train/81-717/lamps/lamp_typ2.mdl",
-        pos = Vector(354.1 - 32.832*i,0,68.2),
-        ang = Angle(0,0,0),
-        --color = Color(245+r,228+g,189),
-        color = Color(255,255,255),
-        hideseat = 1.1,
-    }
-end
 --[[
 
 local pos = Vector(450.273468,-32.306019,13.236823)
@@ -2771,7 +2753,6 @@ function ENT:Think()
     local lvz = self:GetNW2Bool("LVZ")
     local mask = self:GetNW2Bool("Mask")
     local mask22 = self:GetNW2Bool("Mask22")
-    self:ShowHide("destination",not dot5)
     self:HidePanel("Battery_C",dot5)
     self:HidePanel("AV_C",dot5)
     self:HidePanel("VBD_C",dot5)
@@ -2780,7 +2761,6 @@ function ENT:Think()
     self:HidePanel("HelperPanel_C",dot5)
     self:HidePanel("BZOS_C",dot5)
     self:HidePanel("CabVent_C",dot5)
-    self:ShowHide("destination1",dot5)
     self:HidePanel("Battery_R",not dot5)
     self:HidePanel("AV_R",not dot5)
     self:HidePanel("VBD_R",not dot5)
@@ -2891,30 +2871,10 @@ function ENT:Think()
     self:SetLightPower(3,self.Otsek1 and self:GetPackedBool("EqLights"))
     self:SetLightPower(4,self.Otsek2 and self:GetPackedBool("EqLights"))
 
-    local typ = self:GetNW2Int("LampType",1)
-    if self.LampType ~= typ then
-        self.LampType = typ
-        for i=1,25 do
-            if i<13 then
-                self:ShowHide("lamp1_"..i,typ==1)
-            end
-            self:ShowHide("lamp2_"..i,typ==2)
-        end
-        self:ShowHide("lamps1",typ==1)
-        self:ShowHide("lamps2",typ==2)
-    end
-    if typ == 1 then
-        for i = 1,12 do
-            local colV = self:GetNW2Vector("lamp"..i)
-            local col = Color(colV.x,colV.y,colV.z)
-            self:ShowHideSmooth("lamp1_"..i,self:Animate("Lamp1_"..i,self:GetPackedBool("lightsActive"..i) and 1 or 0,0,1,6,false),col)
-        end
-    else
-        for i = 1,25 do
-            local colV = self:GetNW2Vector("lamp"..i)
-            local col = Color(colV.x,colV.y,colV.z)
-            self:ShowHideSmooth("lamp2_"..i,self:Animate("Lamp2_"..i,self:GetPackedBool("lightsActive"..i) and 1 or 0,0,1,6,false),col)
-        end
+    for i = 1,12 do
+        local colV = self:GetNW2Vector("lamp"..i)
+        local col = Color(colV.x,colV.y,colV.z)
+        self:ShowHideSmooth("lamp1_"..i,self:Animate("Lamp1_"..i,self:GetPackedBool("lightsActive"..i) and 1 or 0,0,1,6,false),col)
     end
 
     self:Animate("FrontBrake", self:GetNW2Bool("FbI") and 0 or 1,0,1, 3, false)
@@ -3215,9 +3175,10 @@ function ENT:DrawPost(special)
 
     local distance = self:GetPos():Distance(LocalPlayer():GetPos())
 
-    if distance < 4096 then
-        
+    if distance < 4096 and self:GetNW2Bool("VB", false) then
         self:DrawOnPanel("LastStationScreen", function(...)
+
+
             draw.NoTexture()
 
             local str = self:GetNW2String("LastStation", "ОБКАТКА")
@@ -3228,6 +3189,14 @@ function ENT:DrawPost(special)
             surface.SetTextPos(-w/2, 0)
             surface.SetTextColor(0,255,0)
             surface.DrawText(str)
+        end)
+
+        self:DrawOnPanel("RouteNumberScreen", function(...)
+            draw.NoTexture()
+            surface.SetTextPos(0, 0)
+            surface.SetFont("Metrostroi_717_NN_RouteNumber")
+            surface.SetTextColor(0,255,0)
+            surface.DrawText(self.RouteNumber.Number or "61")
         end)
 
     end
@@ -3252,13 +3221,6 @@ function ENT:DrawPost(special)
         surface.DrawTexturedRectRotated(256,64,512,128,0)
     end)
 
-    self:DrawOnPanel("RouteNumberScreen", function(...)
-        draw.NoTexture()
-        surface.SetTextPos(0, 0)
-        surface.SetFont("Metrostroi_717_NN_RouteNumber")
-        surface.SetTextColor(0,255,0)
-        surface.DrawText(self.RouteNumber.Number or "61")
-    end)
 
     self:DrawOnPanel("AirDistributor",function()
         draw.DrawText(self:GetNW2Bool("AD") and "Air Distributor ON" or "Air Distributor OFF","Trebuchet24",0,0,Color(0,0,0,255))

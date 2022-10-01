@@ -21,6 +21,7 @@ end
 
 if SERVER then
     function TRAIN_SYSTEM:TriggerInput(name,value)
+        if self.Train.VB.Value < 0.5 then return end
         local Train = self.Train
         local id = tonumber(name[1])
         if name[2]=="+" and value>0 then
