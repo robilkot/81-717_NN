@@ -6,7 +6,7 @@
 	"$phongexponenttexture"	"models/metrostroi_train/NN-717/NN_int_handrails_phong"
 	"$phongexponent" "20"
 	"$phongboost" "10"
-	"$phongfresnelranges" "[1 1 1]"
+	"$phongfresnelranges" "[.5 2 4]"
 	"$envmap" "env_cubemap"
 	"$normalmapalphaenvmapmask" "1"
 }
