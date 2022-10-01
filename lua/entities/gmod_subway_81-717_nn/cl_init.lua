@@ -2113,13 +2113,13 @@ ENT.ButtonMap["CabinDoor"] = {
     }
 }
 ENT.ButtonMap["OtsekDoor1"] = {
-    pos = Vector(394.5,28,12.6),
-    ang = Angle(0,180,90),
-    width = 310,
-    height = 130,
+    pos = Vector(376,23,57),
+    ang = Angle(0,270,90),
+    width = 752,
+    height = 2100,
     scale = 0.1/2,
     buttons = {
-        {ID = "OtsekDoor1",x=0,y=0,w=310,h=130,tooltip="",model = {
+        {ID = "OtsekDoor1",x=0,y=0,w=752,h=2100,tooltip="",model = {
             var="door_otsek1",sndid="door_otsek1",
             sndvol = 1,snd = function(val) return "otsek_door_close" end,
             sndmin = 90,sndmax = 1e3,sndang = Angle(-90,0,0),
@@ -2127,13 +2127,13 @@ ENT.ButtonMap["OtsekDoor1"] = {
     }
 }
 ENT.ButtonMap["OtsekDoor2"] = {
-    pos = Vector(394.5,28,-15.5),
-    ang = Angle(0,180,90),
-    width = 310,
-    height = 130,
+    pos = Vector(376,-19,57),
+    ang = Angle(0,270,90),
+    width = 752,
+    height = 2100,
     scale = 0.1/2,
     buttons = {
-        {ID = "OtsekDoor2",x=0,y=0,w=310,h=130,tooltip="",model = {
+        {ID = "OtsekDoor2",x=0,y=0,w=752,h=2100,tooltip="",model = {
             var="door_otsek2",sndid="door_otsek2",
             sndvol = 1,snd = function(val) return "otsek_door_close" end,
             sndmin = 90,sndmax = 1e3,sndang = Angle(-90,0,0),
