@@ -553,9 +553,8 @@ ENT.ClientProps["door2"] = {
 ENT.ClientPropsInitialized = false
 
 
-local train_brake_line = Vector(-466.55, 14.5, 56.7)
-local brake_cylinder = Vector(-466.6,9.1,56.8)
-
+local train_brake_line = Vector(-466.6,9.1,56.8)
+local brake_cylinder = Vector(-466.55, 14.5, 56.7)
 
 ENT.ClientProps["train_line"] = {
     model = "models/metrostroi_train/Equipment/arrow_nm.mdl",
