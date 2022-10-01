@@ -101,19 +101,13 @@ ENT.ClientProps["body_additional"] = {
 --     ang = Angle(0,0,0),
 --     hide=2,
 -- }
-ENT.ClientProps["seats_cap"] = {
+ENT.ClientProps["seats_cap_siduha"] = {
     model = "models/metrostroi_train/NN-717/NN_714_otsek1.mdl",
     pos = Vector(0,0,0),
     ang = Angle(0,0,0),
     hideseat=0.8,
 }
-ENT.ClientProps["seats_cap_o"] = {
-    model = "models/metrostroi_train/NN-717/NN_714_otsek.mdl",
-    pos = Vector(-285,410,13),
-    ang = Angle(0,70,-70),
-    hideseat=0.8,
-}
-ENT.ClientProps["seats_cap_2"] = {
+ENT.ClientProps["seats_cap_dverca"] = {
     model = "models/metrostroi_train/NN-717/NN_714_otsek.mdl",
     pos = Vector(0,0,0),
     ang = Angle(0,0,0),
@@ -290,7 +284,7 @@ ENT.ButtonMap["Stopkran"] = {
     }
 }
 ENT.ButtonMap["AV_S"] = {
-    pos = Vector(-456,60,-15),
+    pos = Vector(-456,62,-5),
     ang = Angle(0,0,90),
     width = 325,
     height = 205,
@@ -810,26 +804,25 @@ for i = 0,26 do
 end
 for i=0,4 do
     ENT.ClientProps["TrainNumberL"..i] = {
-        model = "models/metrostroi_train/common/bort_numbers.mdl",
+        model = "models/metrostroi_train/81-714_mmz/bortnumber_" .. i .. ".mdl",
         pos = Vector(41+16+i*6.6-5*6.6/2,67.4,-17.8),
-        ang = Angle(0,180,0),
-        skin=i,
+        ang = Angle(0,90,0),
         hide = 1.5,
         callback = function(ent)
             ent.WagonNumber = false
         end,
     }
     ENT.ClientProps["TrainNumberR"..i] = {
-        model = "models/metrostroi_train/common/bort_numbers.mdl",
+        model = "models/metrostroi_train/81-714_mmz/bortnumber_" .. i .. ".mdl",
         pos = Vector(64+16-i*6.6-5*6.6/2,-67.4,-17.8),
-        ang = Angle(0,0,0),
-        skin=i,
+        ang = Angle(0,270,0),
         hide = 1.5,
         callback = function(ent)
             ent.WagonNumber = false
         end,
     }
 end
+local bortnumber_format = "models/metrostroi_train/81-714_mmz/bortnumber_%d.mdl"
 --------------------------------------------------------------------------------
 function ENT:UpdateWagonNumber()
     local count = math.max(4,math.ceil(math.log10(self.WagonNumber+1)))
@@ -841,11 +834,11 @@ function ENT:UpdateWagonNumber()
             local num = math.floor(self.WagonNumber%(10^(i+1))/10^i)
             if IsValid(leftNum) then
                 leftNum:SetPos(self:LocalToWorld(Vector(41+16+i*6.6-count*6.6/2,67.4,-17.8)))
-                leftNum:SetSkin(num)
+                leftNum:SetModel(Format(bortnumber_format, num))
             end
             if IsValid(rightNum) then
                 rightNum:SetPos(self:LocalToWorld(Vector(64+16-i*6.6-count*6.6/2,-67.4,-17.8)))
-                rightNum:SetSkin(num)
+                rightNum:SetModel(Format(bortnumber_format, num))
             end
         end
     end
@@ -914,9 +907,7 @@ function ENT:Think()
 
     local capOpened = self:GetPackedBool("CouchCap")
     local c013 = self:GetPackedBool("Crane013")
-    self:ShowHide("seats_cap_o",capOpened)
-    self:ShowHide("seats_cap_2", not capOpened)
-    self:ShowHide("seats_cap",not capOpened)
+    -- self:ShowHide("seats_cap",not capOpened)
     -- self:HidePanel("couch_cap",capOpened)
     -- self:HidePanel("couch_cap_o",not capOpened)
     self:HidePanel("AV_S",not capOpened)
@@ -930,6 +921,9 @@ function ENT:Think()
     self:HidePanel("DriverValveBLTLDisconnect",not capOpened)
     self:HidePanel("Shunt",not capOpened)
     self:HidePanel("VU",not capOpened)
+
+    self:Animate("seats_cap_dverca", capOpened and 1 or 0,0, 1,  20,2)
+    self:Animate("seats_cap_siduha", capOpened and 1 or 0,0, 1,  20,2)
 
     self:Animate("brake_disconnect",self:GetPackedBool("DriverValveBLDisconnect") and 1 or 0,0.25,0,  4,false)
     self:Animate("train_disconnect",self:GetPackedBool("DriverValveTLDisconnect") and 1 or 0,0.25,0,  4,false)
