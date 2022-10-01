@@ -1756,6 +1756,24 @@ ENT.ClientProps["stopkran"] = {
     ang = Angle(0,0,0),
     hideseat=0.2,
 }
+ENT.ClientProps["disable_doors_1"] = {
+    model = "models/metrostroi_train/81-717/stop_mvm.mdl",
+    pos = Vector(285.2,-62,17),
+    ang = Angle(0,180,0),
+    hideseat=0.2,
+}
+ENT.ClientProps["disable_doors_2"] = {
+    model = "models/metrostroi_train/81-717/stop_mvm.mdl",
+    pos = Vector(-297,-62,17.4),
+    ang = Angle(0,180,0),
+    hideseat=0.2,
+}
+ENT.ClientProps["disable_doors_3"] = {
+    model = "models/metrostroi_train/81-717/stop_mvm.mdl",
+    pos = Vector(-297,62,17.4),
+    ang = Angle(0,0,0),
+    hideseat=0.2,
+}
 ENT.ClientSounds["EmergencyBrakeValve"] = {{"stopkran",function() return "disconnect_valve" end,1,1,50,1e3,Angle(-90,0,0)}}
 
 ENT.ButtonMap["IGLA_C"] = {
