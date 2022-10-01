@@ -83,21 +83,67 @@ ENT.ClientProps["schemes"] = {
 --     end,
 -- }
 ENT.ButtonMap["EMU"] = {
-    pos = Vector(457,30,40),
+    pos = Vector(457.6,30,40),
     ang = Angle(0,270,90),
     width = 400,
     height = 150,
     scale = 0.0625,
     buttons = {
-        {ID = "LastSTLeftSet",x=28, y=90, radius=8, tooltip = "ЭМУ: Предыдущая конечная",model = {
+        {ID = "LastSTLeftSet",x=95, y=118.8, radius=8, tooltip = "ЭМУ: Предыдущая конечная",model = {
             model = "models/metrostroi_train/81-720/button_round.mdl",
             var="LastSTLeft",speed=12, vmin=0, vmax=0.9,
+            sndvol = 0.5,snd = function(val) return val and "pnm_button1_on" or "pnm_button1_off" end,
+            sndmin = 50,sndmax = 1e3,sndang = Angle(-90,0,0),
+        }},
+        {ID = "LastSTRightSet",x=95+47, y=118.8, radius=8, tooltip = "ЭМУ: Следующая конечная",model = {
+            model = "models/metrostroi_train/81-720/button_round.mdl",
+            var="LastSTRight",speed=12, vmin=0, vmax=0.9,
+            sndvol = 0.5,snd = function(val) return val and "pnm_button1_on" or "pnm_button1_off" end,
+            sndmin = 50,sndmax = 1e3,sndang = Angle(-90,0,0),
+        }},
+        {ID = "RouteNumFirstUpSet",x=95+31, y=100, radius=8, tooltip = "ЭМУ: Повысить первую цифру",model = {
+            model = "models/metrostroi_train/81-720/button_round.mdl",
+            var="RouteNumFirstUp",speed=12, vmin=0, vmax=0.9,
+            sndvol = 0.5,snd = function(val) return val and "pnm_button1_on" or "pnm_button1_off" end,
+            sndmin = 50,sndmax = 1e3,sndang = Angle(-90,0,0),
+        }},
+        {ID = "RouteNumFirstDownSet",x=95+31, y=100+18.8*2, radius=8, tooltip = "ЭМУ: Понизить первую цифру",model = {
+            model = "models/metrostroi_train/81-720/button_round.mdl",
+            var="RouteNumFirstDown",speed=12, vmin=0, vmax=0.9,
+            sndvol = 0.5,snd = function(val) return val and "pnm_button1_on" or "pnm_button1_off" end,
+            sndmin = 50,sndmax = 1e3,sndang = Angle(-90,0,0),
+        }},
+        {ID = "RouteNumSecondUpSet",x=95+16, y=100, radius=8, tooltip = "ЭМУ: Повысить вторую цифру",model = {
+            model = "models/metrostroi_train/81-720/button_round.mdl",
+            var="RouteNumSecondUp",speed=12, vmin=0, vmax=0.9,
+            sndvol = 0.5,snd = function(val) return val and "pnm_button1_on" or "pnm_button1_off" end,
+            sndmin = 50,sndmax = 1e3,sndang = Angle(-90,0,0),
+        }},
+        {ID = "RouteNumSecondDownSet",x=95+16, y=100+18.8*2, radius=8, tooltip = "ЭМУ: Понизить вторую цифру",model = {
+            model = "models/metrostroi_train/81-720/button_round.mdl",
+            var="RouteNumSecondDown",speed=12, vmin=0, vmax=0.9,
             sndvol = 0.5,snd = function(val) return val and "pnm_button1_on" or "pnm_button1_off" end,
             sndmin = 50,sndmax = 1e3,sndang = Angle(-90,0,0),
         }},
         -- {ID = "LastStation-",x=000,y=0,w=438,h=205, tooltip=""},
         -- {ID = "LastStation+",x=438,y=0,w=438,h=205, tooltip=""},
     }
+}
+ENT.ClientProps["EMU_route_number_1"] = {
+    model = "models/metrostroi_train/81-717/segments/segment_spb.mdl",
+    pos = Vector(457.7,22.2,32.6),
+    ang = Angle(90,180,0),
+    color = Color(175,250,20),
+    scale = 0.8,
+    hideseat=1,
+}
+ENT.ClientProps["EMU_route_number_2"] = {
+    model = "models/metrostroi_train/81-717/segments/segment_spb.mdl",
+    pos = Vector(457.7,23,32.6),
+    ang = Angle(90,180,0),
+    color = Color(175,250,20),
+    scale = 0.8,
+    hideseat=1,
 }
 ENT.ClientProps["brake_valve_334"] = {
     model = "models/metrostroi_train/81-717/brake_valves/334.mdl",
@@ -2082,19 +2128,6 @@ for i=0,4 do
     }
 end
 
-ENT.ButtonMap["Route"] = {
-    pos = Vector(457,43.4,-3.5),
-    ang = Angle(0,99,90),
-    width = 153,
-    height = 130,
-    scale = 0.0625,
-    buttons = {
-        {ID = "RouteNumber1+",x=76.5*0,y=0,w=76.5,h=65,tooltip=""},
-        {ID = "RouteNumber2+",x=76.5*1,y=0,w=76.5,h=65,tooltip=""},
-        {ID = "RouteNumber1-",x=76.5*0,y=65,w=76.5,h=65,tooltip=""},
-        {ID = "RouteNumber2-",x=76.5*1,y=65,w=76.5,h=65,tooltip=""},
-    }
-}
 -- ENT.ClientProps["route"] = {
 --     model = "models/metrostroi_train/common/routes/ezh/route_holder.mdl",
 --     pos = Vector(-8,0,-5.65),
@@ -2752,6 +2785,22 @@ function ENT:Think()
         for i=1,2 do
             if IsValid(self.ClientEnts["SpeedFact"..i]) then self.ClientEnts["SpeedFact"..i]:SetSkin(math.ceil(math.Clamp((speed-4)/5-(i-1)*10,0,10))) end
         end
+    end
+
+    self:ShowHide("EMU_route_number_1", self:GetPackedBool("VB"))
+    self:ShowHide("EMU_route_number_2", self:GetPackedBool("VB"))
+
+    if self:GetPackedBool("VB") then
+        local num = self.RouteNumber.Number or "61"
+
+        if IsValid(self.ClientEnts["EMU_route_number_1"]) then 
+            self.ClientEnts["EMU_route_number_1"]:SetSkin(tonumber(num[2])) 
+        end
+
+        if IsValid(self.ClientEnts["EMU_route_number_2"]) then 
+            self.ClientEnts["EMU_route_number_2"]:SetSkin(tonumber(num[1])) 
+        end
+        
     end
 
     -- local handrails = self:GetNW2Bool("HandRails")

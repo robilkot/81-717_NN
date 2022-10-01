@@ -12,6 +12,10 @@ function TRAIN_SYSTEM:Initialize(texName)
     
     self.Train:LoadSystem("LastSTLeft","Relay","Switch",{bass = true })
     self.Train:LoadSystem("LastSTRight","Relay","Switch",{bass = true })
+    self.Train:LoadSystem("RouteNumFirstUp","Relay","Switch",{bass = true })
+    self.Train:LoadSystem("RouteNumFirstDown","Relay","Switch",{bass = true })
+    self.Train:LoadSystem("RouteNumSecondUp","Relay","Switch",{bass = true })
+    self.Train:LoadSystem("RouteNumSecondDown","Relay","Switch",{bass = true })
 end
 
 function TRAIN_SYSTEM:Outputs()
@@ -45,12 +49,12 @@ if SERVER then
     function TRAIN_SYSTEM:Trigger(name,value)
         local tbl = NN_717.Lasts
 
-        if tbl and name=="LastSTLeft" and value then
+        if tbl and name=="LastSTRight" and value then
             self.ID = self.ID+1
             if self.ID>#tbl then self.ID = 0 end
         end
 
-        if tbl and name=="LastSTRight" and value then
+        if tbl and name=="LastSTLeft" and value then
             self.ID = self.ID-1
             if self.ID<0 then self.ID = #tbl end
         end

@@ -22,7 +22,9 @@ ENT.SyncTable = {
     "R_ASNPMenu","R_ASNPUp","R_ASNPDown","R_ASNPOn"
     , "ALSFreq","Ring","VBD",
     "V11","V12","V13","UPPS_On","SAB1",
-    "LastSTLeft","LastSTRight"
+    "LastSTLeft","LastSTRight",
+    "RouteNumFirstUp", "RouteNumFirstDown",
+    "RouteNumSecondUp", "RouteNumSecondDown",
 }
 ENT.SyncFunctions = {
     ""
