@@ -382,7 +382,7 @@ ENT.ClientProps["pult_mvm_classic"] = {
     hideseat=0.8,
 }
 ENT.ClientProps["ars_mvm"] = {
-    model = "models/metrostroi_train/81-717/pult/ars_spb_blue.mdl",
+    model = "models/metrostroi_train/81-717/pult/ars_spb.mdl",
     pos = Vector(0,0,0),
     ang = Angle(0,0,0),
     hideseat=0.8,

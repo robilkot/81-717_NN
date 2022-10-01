@@ -71,12 +71,6 @@ ENT.ClientProps["lamps1"] = {
     ang = Angle(0,0,0),
     hide=1.5,
 }
-ENT.ClientProps["lamps2"] = {
-    model = "models/metrostroi_train/81-717/lamps_type2_interim.mdl",
-    pos = Vector(0,0,0),
-    ang = Angle(0,0,0),
-    hide=1.5,
-}
 ENT.ClientProps["body_additional"] = {
     model = "models/metrostroi_train/81-717/714_body_additional.mdl",
     pos = Vector(0,0,0),
@@ -954,30 +948,10 @@ function ENT:Think()
         self:Animate("ampermeter",      0.5,0.604, 0.398)
     end
 
-    local typ = self:GetNW2Int("LampType",1)
-    if self.LampType ~= typ then
-        self.LampType = typ
-        for i=1,27 do
-            if i<=13 then
-                self:ShowHide("lamp1_"..i,typ==1)
-            end
-            self:ShowHide("lamp2_"..i,typ==2)
-        end
-        self:ShowHide("lamps1",typ==1)
-        self:ShowHide("lamps2",typ==2)
-    end
-    if typ == 1 then
-        for i = 1,13 do
-            local colV = self:GetNW2Vector("lamp"..i)
-            local col = Color(colV.x,colV.y,colV.z)
-            self:ShowHideSmooth("lamp1_"..i,self:Animate("Lamp1_"..i,self:GetPackedBool("lightsActive"..i) and 1 or 0,0,1,6,false),col)
-        end
-    else
-        for i = 1,27 do
-            local colV = self:GetNW2Vector("lamp"..i)
-            local col = Color(colV.x,colV.y,colV.z)
-            self:ShowHideSmooth("lamp2_"..i,self:Animate("Lamp2_"..i,self:GetPackedBool("lightsActive"..i) and 1 or 0,0,1,6,false),col)
-        end
+    for i = 1,13 do
+        local colV = self:GetNW2Vector("lamp"..i)
+        local col = Color(colV.x,colV.y,colV.z)
+        self:ShowHideSmooth("lamp1_"..i,self:Animate("Lamp1_"..i,self:GetPackedBool("lightsActive"..i) and 1 or 0,0,1,6,false),col)
     end
 
     local door1 = self:Animate("door1", self:GetPackedBool("FrontDoor") and 0.99 or 0,0,0.25, 4, 0.5)
