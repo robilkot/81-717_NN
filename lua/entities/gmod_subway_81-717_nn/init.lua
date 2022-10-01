@@ -19,12 +19,13 @@ ENT.SyncTable = {
     "RC1","VB","BPS","UOS", "PB", "UAVA",
     "DriverValveBLDisconnect","DriverValveTLDisconnect","DriverValveDisconnect","ParkingBrake","EPK","EmergencyBrakeValve",
     "VUD2","VDL","Wiper", "GV",
-    "R_ASNPMenu","R_ASNPUp","R_ASNPDown","R_ASNPOn"
-    , "ALSFreq","Ring","VBD",
+    "ALSFreq","Ring","VBD",
     "V11","V12","V13","UPPS_On","SAB1",
     "LastSTLeft","LastSTRight",
     "RouteNumFirstUp", "RouteNumFirstDown",
     "RouteNumSecondUp", "RouteNumSecondDown",
+    "RRIAmplifier", "RRIEnable"
+
 }
 ENT.SyncFunctions = {
     ""
@@ -241,7 +242,7 @@ function ENT:Initialize()
 
         [30]  = { "light",           Vector(465  ,   -45, -23.5), Angle(0,0,0), Color(255,220,180), brightness = 0.2, scale = 2.5, texture = "sprites/light_glow02.vmt" },
         [31]  = { "light",           Vector(465  ,   45, -23.5), Angle(0,0,0), Color(255,220,180), brightness = 0.2, scale = 2.5, texture = "sprites/light_glow02.vmt" },
-        [32]  = { "light",           Vector(465  ,   0, 52), Angle(0,0,0), Color(255,220,180), brightness = 0.2, scale = 2.5, texture = "sprites/light_glow02.vmt" },
+        -- [32]  = { "light",           Vector(465  ,   0, 52), Angle(0,0,0), Color(255,220,180), brightness = 0.2, scale = 2.5, texture = "sprites/light_glow02.vmt" },
     }
     -- Cross connections in train wires
     self.TrainWireInverts = {
@@ -613,9 +614,9 @@ function ENT:Think()
         self.TestV = nil
         self.TestS = nil
     end--]]
-    self:SetLightPower(30,brightness > 0,brightness)
-    self:SetLightPower(31,brightness > 0,brightness)
-    self:SetLightPower(32,brightness > 0,brightness)
+    self:SetLightPower(30,brightness > 0,brightness*1.2)
+    self:SetLightPower(31,brightness > 0,brightness*1.2)
+    -- self:SetLightPower(32,brightness > 0,brightness)
     self:SetLightPower(8,Panel.RedLight2>0,1)
     self:SetLightPower(9,Panel.RedLight1>0,1)
     --self:SetLightPower(30, (Panel.CabinLight > 0.5), 0.03 + 0.97*self.L_2.Value)
@@ -772,9 +773,10 @@ function ENT:Think()
     -- Update ARS system
     self:SetPackedRatio("Speed", self.Speed/100)
 
-    self:SetPackedBool("AnnBuzz",Panel.AnnouncerBuzz > 0)
+    self:SetPackedBool("RRIOn",self.RRI_VV.Power>0)
+    self:SetPackedRatio("RRIRewind",self.RRIRewind.Value/2)
     self:SetPackedBool("AnnPlay",Panel.AnnouncerPlaying > 0)
-    self:SetPackedBool("AnnCab",self.ASNP_VV.CabinSpeakerPower > 0)
+    self:SetPackedBool("AnnCab",self.RRI_VV.CabinSpeakerPower > 0)
     -- Exchange some parameters between engines, pneumatic system, and real world
     self.Engines:TriggerInput("Speed",self.Speed)
     self:SetPackedRatio("Speed", self.Speed/100 or 0.5 or 0.85-(((CurTime()%36/36)^0.8)*8.5)/10 or self.Speed/100)
@@ -950,6 +952,12 @@ function ENT:OnButtonPress(button,ply)
         end
         return
     end
+    if button == "RRIRewindSet0" then
+        self.RRIRewind:TriggerInput("Set",0)
+    end
+    if button == "RRIRewindSet2" then
+        self.RRIRewind:TriggerInput("Set",2)
+    end
 end
 
 function ENT:OnButtonRelease(button)
@@ -988,6 +996,9 @@ function ENT:OnButtonRelease(button)
         if self.KV.ControllerPosition < -1 then
             self.KV:TriggerInput("ControllerSet",-1)
         end
+    end
+    if button == "RRIRewindSet2" or button == "RRIRewindSet0" then
+        self.RRIRewind:TriggerInput("Set",1)
     end
 end
 

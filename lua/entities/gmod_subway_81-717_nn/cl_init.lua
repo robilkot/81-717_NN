@@ -56,7 +56,7 @@ ENT.ClientProps["body_additional"] = {
     hide=2,
 }
 ENT.ClientProps["schemes"] = {
-    model = "models/metrostroi_train/81-717/labels/schemes.mdl",
+    model = "models/metrostroi_train/NN-717/NN_schemes.mdl",
     pos = Vector(0,0,0),
     ang = Angle(0,0,0),
     hide=2,
@@ -829,51 +829,65 @@ ENT.ButtonMap["Block3"] = {
     }
 }
 
-ENT.ButtonMap["Block4"] = {
-    pos = Vector(445.25,23,5.0-11.5+5.35),
-    ang = Angle(0,-90,58.0),
-    width = 135,
-    height = 75,
+
+ENT.ClientProps["E_informator"] = {
+    model = "models/metrostroi_train/equipment/rri_informator_portable.mdl",
+    pos = Vector(392,-27,-34),
+    ang = Angle(0,180,0),
+    hideseat=0.2,
+}
+ENT.ButtonMap["RRIScreen"] = {
+    pos = ENT.ClientProps["E_informator"].pos-Vector(2,-2.9,-5),
+    ang = Angle(0,-90,90),
+    width = 121,
+    height = 103,
+    scale = 0.07,
+    hide=true,
+    hideseat=0.2,
+
+    buttons = {
+        {ID = "RRIUp",x=30,y=60,radius=10,tooltip=""},
+        {ID = "RRIDown",x=30,y=80,radius=10,tooltip=""},
+        {ID = "RRILeft",x=20,y=70,radius=10,tooltip=""},
+        {ID = "RRIRight",x=40,y=70,radius=10,tooltip=""},
+    }
+}
+ENT.ButtonMap["RRI"] = {
+    pos = ENT.ClientProps["E_informator"].pos-Vector(-0.65,-0.5,-5),
+    ang = Angle(0,-90,0),
+    width = 60,
+    height = 25,
     scale = 0.0625,
     hideseat=0.2,
 
     buttons = {
-        {ID = "R_ASNPMenuSet",x=69,y=56,radius=8,tooltip = "АСНП: Меню",model = {
-            model = "models/metrostroi_train/81-720/button_round.mdl",z=-10,
-            var="R_ASNPMenu",speed=12,vmin=0,vmax=0.9,
-            sndvol = 0.5,snd = function(val) return val and "pnm_button1_on" or "pnm_button1_off" end,
-            sndmin = 50,sndmax = 1e3,sndang = Angle(-90,0,0),
+        {ID = "RRIEnableToggle",x=10,y=12.5,radius=10,tooltip="",model = {
+            model = "models/metrostroi_train/81-710/ezh3_tumbler_t1.mdl",ang = 180,z=-4,
+            var="RRIEnable",speed=16,
+            sndvol = 1,snd = function(val) return val and "switchbl_on" or "switchbl_off" end,
+            sndmin = 90,sndmax = 1e3,sndang = Angle(-90,0,0),
         }},
-        {ID = "R_ASNPUpSet",x=123,y=24.5-9,radius=8,tooltip = "АСНП: Вверх",model = {
-            model = "models/metrostroi_train/81-720/button_round.mdl",z=-10,
-            var="R_ASNPUp",speed=12,vmin=0,vmax=0.9,
-            sndvol = 0.5,snd = function(val) return val and "pnm_button1_on" or "pnm_button2_off" end,
-            sndmin = 50,sndmax = 1e3,sndang = Angle(-90,0,0),
+        {ID = "!RRIRewind",x=30,y=12.5,radius=0,model = {
+            model = "models/metrostroi_train/81-502/buttons/tumbler_b_a.mdl",ang = 180,z=-3,
+            getfunc = function(ent) return ent:GetPackedRatio("RRIRewind") end,
+            var="RRIRewind",speed=8,
+            sndvol = 0.5,snd = function(_,val) return val==2 and "triple_0-up" or val==0 and "triple_0-down" or "triple_up-0" end,
+            sndmin = 90,sndmax = 1e3,sndang = Angle(-90,0,0),
         }},
-        {ID = "R_ASNPDownSet",x=123,y=24.5+9,radius=8,tooltip = "АСНП: Вниз",model = {
-            model = "models/metrostroi_train/81-720/button_round.mdl",z=-10,
-            var="R_ASNPDown",speed=12,vmin=0,vmax=0.9,
-            sndvol = 0.5,snd = function(val) return val and "pnm_button2_on" or "pnm_button1_off" end,
-            sndmin = 50,sndmax = 1e3,sndang = Angle(-90,0,0),
+        {ID = "RRIRewindSet2",x=30-5,y=12.5-10,w=10,h=10,tooltip=""},
+        {ID = "RRIRewindSet0",x=30-5,y=12.5,w=10,h=10,tooltip=""},
+
+        {ID = "RRIAmplifierToggle",x=50,y=12.5,radius=10,tooltip="",model = {
+            model = "models/metrostroi_train/81-710/ezh3_tumbler_t1.mdl",ang = 180,z=-4,
+            var="RRIAmplifier",speed=16,
+            sndvol = 1,snd = function(val) return val and "switchbl_on" or "switchbl_off" end,
+            sndmin = 90,sndmax = 1e3,sndang = Angle(-90,0,0),
         }},
-        {ID = "R_ASNPOnToggle",x=15,y=22,radius=8,tooltip = "АСНП: Включение",model = {
-            model = "models/metrostroi_train/81-720/tumbler2.mdl",ang=0,
-            var="R_ASNPOn",speed=12,vmin=1,vmax=0,
-            sndvol = 0.5,snd = function(val) return val and "pnm_on" or "pnm_off" end,
-            sndmin = 50,sndmax = 1e3,sndang = Angle(-90,0,0),
+        {ID = "!RRIOn",x=70,y=12.5,radius=10,tooltip="",model = {
+            model = "models/metrostroi_train/81-710/ezh3_slc77.mdl",z = -13,
+            lamp = {model = "models/metrostroi_train/81-717/buttons/slc_77_lamp.mdl",ang=62,x=-0.3,y=-0.3,z=20.6, var="RRIOn", color=Color(210,170,255)},
         }},
     }
-}
-
-ENT.ButtonMap["ASNPScreen"] = {
-    pos = Vector(445,21.2,-7.25+5.35),
-    ang = Angle(0,-90,59.0),
-    width = 512,
-    height = 128,
-    scale = 0.025/2.69,
-
-    hideseat=0.2,
-    hide=true,
 }
 
 ENT.ButtonMap["RouteNumberScreen"] = {
@@ -1829,50 +1843,54 @@ ENT.ClientProps["disable_doors_3"] = {
 }
 ENT.ClientSounds["EmergencyBrakeValve"] = {{"stopkran",function() return "disconnect_valve" end,1,1,50,1e3,Angle(-90,0,0)}}
 
-ENT.ButtonMap["IGLA_C"] = {
-    pos = Vector(456.15,-25.45,27.1),
-    ang = Angle(0,-110,90),
-    width = 512,--18333.333333333333333333333333333
-    height = 107,--7916.6666666666666666666666666667
-    scale = 0.0171,
-    hideseat=0.2,
-    hide=true,
-}
-ENT.ButtonMap["IGLAButtons_C"] = {
-    pos = Vector(456.23,-24.87,27.85),
-    ang = Angle(0,-110,90),
-    width = 165,
+local igla_pos = Vector(455.1,-31.7,32.35)
+local igla_screen_pos = Vector(455.05,-32.4,30.95)
+local igla_ang = Angle(-0,244.5,90)
+
+ENT.ButtonMap["IGLAButtons"] = {
+    pos = igla_pos,
+    ang = igla_ang,
+    width = 87,
     height = 70,
     scale = 0.0625,
-    hideseat=0.2,
+    hideseat = 0.2,
     buttons = {
-        {ID = "IGLA1Set",x=23+32.5*0,y=54,w=14,h=12,tooltip="",model = {
-            lamp = {speed=16,model = "models/metrostroi_train/common/lamps/svetodiod1.mdl",var="IGLA:ButtonL1",color=Color(175,250,20),x=1,y=-4.7,z=-2.3},
+        {ID = "IGLA1USet",x=11, y=39, w=12, h=7, tooltip=""},
+        {ID = "IGLA1Set",x=11, y=46, w=12, h=7, tooltip=""},
+        {ID = "IGLA1DSet",x=11, y=53, w=12, h=7, tooltip=""},
+        {ID = "IGLA2USet",x=65, y=39, w=12, h=7, tooltip=""},
+        {ID = "IGLA2Set",x=65, y=46, w=12, h=7, tooltip=""},
+        {ID = "IGLA2DSet",x=65, y=53, w=12, h=7, tooltip=""},
+        {ID = "!IGLASR",x=17.9, y=10.5, radius=3, tooltip="", model = {
+            lamp = {speed=16,model = "models/metrostroi_train/common/lamps/svetodiod2.mdl", var="IGLASR",color=Color(175,250,20),z=-2.5},
         }},
-        {ID = "IGLA2Set",x=23+32.5*1,y=54,w=14,h=12,tooltip="",model = {
-            lamp = {speed=16,model = "models/metrostroi_train/common/lamps/svetodiod1.mdl",var="IGLA:ButtonL2",color=Color(175,250,20),x=0.6,y=-4.7,z=-2.3},
+        {ID = "!IGLARX",x=27.5, y=10.5, radius=3, tooltip="", model = {
+            lamp = {speed=16,model = "models/metrostroi_train/common/lamps/svetodiod2.mdl", var="IGLARX",color=Color(255,56,30),z=-2.5},
         }},
-        {ID = "IGLA23",x=23+32.5*1.5,y=54,w=14,h=12,tooltip=""},
-        {ID = "IGLA3Set",x=23+32.5*2,y=54,w=14,h=12,tooltip="",model = {
-            lamp = {speed=16,model = "models/metrostroi_train/common/lamps/svetodiod1.mdl",var="IGLA:ButtonL3",color=Color(175,250,20),x=0.2,y=-4.7,z=-2.3},
+        {ID = "!IGLAErr",x=40.5, y=10.5, radius=3, tooltip="", model = {
+            lamp = {speed=16,model = "models/metrostroi_train/common/lamps/svetodiod2.mdl", var="IGLAErr",color=Color(255,168,000),z=-2.5},
         }},
-        {ID = "IGLA4Set",x=23+32.5*3,y=54,w=14,h=12,tooltip="",model = {
-            lamp = {speed=16,model = "models/metrostroi_train/common/lamps/svetodiod1.mdl",var="IGLA:ButtonL4",color=Color(175,250,20),x=0,y=-4.7,z=-2.3},
+        {ID = "!IGLAOSP",x=50, y=10.5, radius=3, tooltip="", model = {
+            lamp = {speed=16,model = "models/metrostroi_train/common/lamps/svetodiod2.mdl", var="IGLAOSP",color=Color(175,250,20),z=-2.5},
         }},
-        {ID = "!IGLAFire",x=142.9,y=56,radius=3,tooltip="",model = {
-            lamp = {speed=16,model = "models/metrostroi_train/81-502/lamps/svetodiod_small_502.mdl",var="IGLA:Fire",color=Color(255,56,30),z=-2.4,ang=0},
+        {ID = "!IGLAPI",x=59.5, y=10.5, radius=3, tooltip="", model = {
+            lamp = {speed=16,model = "models/metrostroi_train/common/lamps/svetodiod2.mdl", var="IGLAPI",color=Color(255,56,30),z=-2.5},
         }},
-        {ID = "!IGLAErr",x=142.9,y=63,radius=3,tooltip="",model = {
-            lamp = {speed=16,model = "models/metrostroi_train/81-502/lamps/svetodiod_small_502.mdl",var="IGLA:Error",color=Color(255,168,000),z=-2.8,ang=0},
+        {ID = "!IGLAOff",x=69, y=10.5, radius=3, tooltip="", model = {
+            lamp = {speed=16,model = "models/metrostroi_train/common/lamps/svetodiod2.mdl", var="IGLAOff",color=Color(255,56,30),z=-2.5},
         }},
     }
 }
+ENT.ButtonMap["IGLA"] = {
+    pos = igla_screen_pos,
+    ang = igla_ang,
+    width = 512,
+    height = 128,
+    scale = 0.025/2.96,
+    hideseat = 0.2,
+    hide=true,
+}
 
-ENT.ButtonMap["IGLA_R"] = table.Copy(ENT.ButtonMap["IGLA_C"])
-ENT.ButtonMap["IGLAButtons_R"] = table.Copy(ENT.ButtonMap["IGLAButtons_C"])
-ENT.ButtonMap["IGLA_R"].pos = ENT.ButtonMap["IGLA_R"].pos - Vector(0,0,1.09)
-ENT.ButtonMap["IGLAButtons_R"].pos = ENT.ButtonMap["IGLAButtons_R"].pos - Vector(0.01,0,1.08)
-for k,v in pairs(ENT.ButtonMap["IGLAButtons_R"].buttons) do v.ID = "1:"..v.ID end
 ENT.ButtonMap["DriverValveBLDisconnect"] = {
     pos = Vector(426.1,-27.3,-20),
     ang = Angle(90,-150,90),
@@ -2336,15 +2354,15 @@ ENT.ClientProps["new_voltmeter"] = {
     hideseat = 0.2,
 }
 ENT.ButtonMap["HVMeters"] = {
-    pos = Vector(453.3,-28.7,20.1),
-    ang = Angle(0,-130,90),
-    width = 68,
-    height = 138,
+    pos = Vector(452,-26.5,18),
+    ang = Angle(0,-111,90),
+    width = 78+68,
+    height = 64,
     scale = 0.0625,
 
     buttons = {
-        {ID = "!EnginesCurrent", x=0, y=0, w=68, h=64, tooltip=""},
-        {ID = "!HighVoltage", x=0, y=74, w=68, h=64, tooltip=""},
+        {ID = "!HighVoltage", x=0, y=0, w=68, h=64, tooltip=""},
+        {ID = "!EnginesCurrent", x=78, y=0, w=68, h=64, tooltip=""},
     }
 }
 ENT.ClientProps["volt1"] = {
@@ -2561,7 +2579,7 @@ ENT.ClientProps["Lamps2_cab2"] = {
     ang = Angle(0,0,0),
     hideseat = 0.9,
 }
-for i = 0,11 do
+for i = 0,9 do
     --[[ local b = 15--math.random()*15
     local g = 15--b+math.random()*(15-b)
     if math.random() > 0.4 then
@@ -2572,9 +2590,9 @@ for i = 0,11 do
         b = -10+math.random()*25
     end--]]
     ENT.ClientProps["lamp1_"..i+1] = {
-        model = "models/metrostroi_train/81-717/lamps/lamp_typ1.mdl",
-        pos = Vector(333.949 - 66.66*i,0,67.7),
-        ang = Angle(0,0,0),
+        model = "models/metrostroi_train/81-540b/minsk_lamp_type4_glow.mdl",
+        pos = Vector(313 - 79.13*i,0,70.5),
+        ang = Angle(0,90,0),
         --color = Color(255,235+g,235+b),
         color = Color(255,255,255),
         hideseat = 1.1,
@@ -2615,7 +2633,7 @@ function ENT:Initialize()
     --self.Train:SetPackedRatio("EmergencyValve_dPdT",leak)
     --self.Train:SetPackedRatio("EmergencyValveEPK_dPdT",leak)
     --self.Train:SetPackedRatio("EmergencyBrakeValve_dPdT",leak)
-    self.ASNP = self:CreateRT("717ASNP",512,128)
+    self.RRIScreen = self:CreateRT("717RRI",128,128)
     self.IGLA = self:CreateRT("717IGLA",512,128)
     self.LeftMirror = self:CreateRT("LeftMirror",128,256)
     self.RightMirror = self:CreateRT("RightMirror",128,256)
@@ -2680,7 +2698,7 @@ function ENT:Think()
     end
     if not self.PassSchemesDone and IsValid(self.ClientEnts.schemes) then
         local scheme = Metrostroi.Skins["717_new_schemes"] and Metrostroi.Skins["717_new_schemes"][self.Scheme]
-        self.ClientEnts.schemes:SetSubMaterial(1,scheme and scheme[1])
+        self.ClientEnts.schemes:SetSubMaterial(0,scheme and scheme[1])
         self.PassSchemesDone = true
     end
 
@@ -2701,6 +2719,7 @@ function ENT:Think()
     self:SetLightPower(1,headlight>0,headlight)
     self:SetLightPower(2,self:GetPackedBool("RedLights"),RL)
 
+    
 
     local newBortlamps = self:GetNW2Bool("NewBortlamps")
     local Bortlamp_w = self:Animate("Bortlamp_w",self:GetPackedBool("DoorsW") and 1 or 0,0,1,16,false)
@@ -2806,21 +2825,17 @@ function ENT:Think()
     -- local handrails = self:GetNW2Bool("HandRails")
     local dot5 = self:GetNW2Bool("Dot5")
     local lvz = self:GetNW2Bool("LVZ")
-    local mask = self:GetNW2Bool("Mask")
-    local mask22 = self:GetNW2Bool("Mask22")
+    local mask = true
+    local mask22 = false
     self:HidePanel("Battery_C",dot5)
     self:HidePanel("AV_C",dot5)
     self:HidePanel("VBD_C",dot5)
-    self:HidePanel("IGLA_C",dot5)
-    self:HidePanel("IGLAButtons_C",dot5)
     self:HidePanel("HelperPanel_C",dot5)
     self:HidePanel("BZOS_C",dot5)
     self:HidePanel("CabVent_C",dot5)
     self:HidePanel("Battery_R",not dot5)
     self:HidePanel("AV_R",not dot5)
     self:HidePanel("VBD_R",not dot5)
-    self:HidePanel("IGLA_R",not dot5)
-    self:HidePanel("IGLAButtons_R",not dot5)
     self:HidePanel("CabVent_R",not dot5)
     self:HidePanel("HelperPanel_R",not dot5)
     self:HidePanel("BZOS_R",not dot5)
@@ -2893,7 +2908,7 @@ function ENT:Think()
     self:Animate("new_voltmeter",self:GetPackedRatio("EnginesVoltage"),0.396,0.658,256,0.2,false)
 
     local otsek1 = self:Animate("door_otsek1",self:GetPackedBool("OtsekDoor1") and 1 or 0,0,1,4,0.5)
-    local otsek2 = self:Animate("door_otsek2",self:GetPackedBool("OtsekDoor2") and 1 or 0,0,1,4,0.5)
+    local otsek2 = self:Animate("door_otsek2",(self:GetPackedBool("OtsekDoor2") or self.CurrentCamera == 9) and 1 or 0,0,1,4,0.5)
     self:HidePanel("AV_S",not dot5 or otsek2<=0)
     local door1 = self:Animate("door1",self:GetPackedBool("RearDoor") and 1 or 0,0,0.25,4,0.5)
     local door2 = self:Animate("door2",self:GetPackedBool("PassengerDoor") and 1 or 0,1,0.8,4,0.5)
@@ -2924,6 +2939,11 @@ function ENT:Think()
     end
     self:SetLightPower(3,self.Otsek1 and self:GetPackedBool("EqLights"))
     self:SetLightPower(4,self.Otsek2 and self:GetPackedBool("EqLights"))
+
+
+    self:HidePanel("RRI",otsek2<=0)
+    self:HidePanel("RRIScreen",otsek2<=0)
+    self:ShowHide("E_informator",otsek2>0)
 
     for i = 1,12 do
         local colV = self:GetNW2Vector("lamp"..i)
@@ -3257,19 +3277,14 @@ function ENT:DrawPost(special)
 
     if distance > 1024 or special then return end
 
-    self.RTMaterial:SetTexture("$basetexture",self.ASNP)
-    self:DrawOnPanel("ASNPScreen",function(...)
+    self.RTMaterial:SetTexture("$basetexture",self.RRIScreen)
+    self:DrawOnPanel("RRIScreen",function(...)
         surface.SetMaterial(self.RTMaterial)
         surface.SetDrawColor(255,255,255)
-        surface.DrawTexturedRectRotated(256,64,512,128,0)
+        surface.DrawTexturedRectRotated(64,64,128,128,0)
     end)
     self.RTMaterial:SetTexture("$basetexture",self.IGLA)
-    self:DrawOnPanel("IGLA_C",function(...)
-        surface.SetMaterial(self.RTMaterial)
-        surface.SetDrawColor(255,255,255)
-        surface.DrawTexturedRectRotated(256,64,512,128,0)
-    end)
-    self:DrawOnPanel("IGLA_R",function(...)
+    self:DrawOnPanel("IGLA",function(...)
         surface.SetMaterial(self.RTMaterial)
         surface.SetDrawColor(255,255,255)
         surface.DrawTexturedRectRotated(256,64,512,128,0)

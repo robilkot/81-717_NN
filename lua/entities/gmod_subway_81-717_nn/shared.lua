@@ -38,10 +38,9 @@ ENT.Cameras = {
     {Vector(407.5+13,-47,-20),Angle(40,270-15,0),"Train.Common.UAVA"},
     {Vector(407.5+5,-20,-10),Angle(40,-30,0),"Train.Common.PneumoPanels"},
     {Vector(407.5+35,40,10),Angle(0,90-17,0),"Train.Common.HelpersPanel"},
-    {Vector(407.5+31,18.8,0),Angle(30,0,0),"Train.Common.ASNP"},
+    {Vector(407.5-29,-30,-30),Angle(10,0,0),"Train.Common.RRI"},
     {Vector(407.5+39,-26.5,25),Angle(0,-20,0),"Train.Common.IGLA"},
-    {Vector(407.5+70,51.5,0)  ,Angle(20,180+9,0),"Train.Common.RouteNumber"},
-    {Vector(407.5+75,0.3,4.5)  ,Angle(20,180,0),"Train.Common.LastStation"},
+    {Vector(445.849243,22.449724,33.038479)  ,Angle(0, 0,0),"ЭМУ"},
     {Vector(450+7,0,30),Angle(60,0,0),"Train.Common.CouplerCamera"},
 }
 
@@ -756,7 +755,7 @@ function ENT:SetRelays()
 end
 function ENT:InitializeSystems()
     -- Электросистема 81-710
-    self:LoadSystem("Electric","81_717_Electric")
+    self:LoadSystem("Electric","81_717_NN_Electric")
     -- Токоприёмник
     self:LoadSystem("TR","TR_3B")
     -- Электротяговые двигатели
@@ -805,7 +804,7 @@ function ENT:InitializeSystems()
 
     self:LoadSystem("Horn")
 
-    self:LoadSystem("IGLA_CBKI","IGLA_CBKI1")
+    self:LoadSystem("IGLA_CBKI","IGLA_CBKI2")
     self:LoadSystem("IGLA_PCBK")
 
     self:LoadSystem("UPPS")
@@ -813,8 +812,8 @@ function ENT:InitializeSystems()
     self:LoadSystem("BZOS","81_718_BZOS")
 
     self:LoadSystem("Announcer","81_71_Announcer", "AnnouncementsASNP")
-    self:LoadSystem("ASNP","81_71_ASNP")
-    self:LoadSystem("ASNP_VV","81_71_ASNP_VV")
+    self:LoadSystem("RRI","81_71_RRI")
+    self:LoadSystem("RRI_VV","81_71_RRI_VV")
 
     self:LoadSystem("RouteNumber","81_717_NN_RouteNumber",2)
     self:LoadSystem("LastStation","81_717_NN_LastStation")
@@ -957,6 +956,8 @@ ENT.Spawner = {
                 ent.L_1:TriggerInput("Set",val==1 and 1 or 0)
                 ent.L_3:TriggerInput("Set",vall==1 and 1 or 0)
                 ent.L_4:TriggerInput("Set",val==1 and 1 or 0)
+                ent.RRIEnable:TriggerInput("Set",val<=2 and 1 or 0)
+                ent.RRIAmplifier:TriggerInput("Set",val<=2 and 1 or 0)
                 ent.EPK:TriggerInput("Set",(ent.Plombs.RC1 and val==1) and 1 or 0)
                 _LastSpawner=CurTime()
                 ent.CabinDoor = val==4 and first

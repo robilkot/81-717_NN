@@ -57,7 +57,7 @@ ENT.ClientProps["salon_2"] = {
     hide=2,
 }
 ENT.ClientProps["schemes"] = {
-    model = "models/metrostroi_train/81-717/labels/schemes.mdl",
+    model = "models/metrostroi_train/NN-717/NN_schemes.mdl",
     pos = Vector(0,0,0),
     ang = Angle(0,0,0),
     hide=2,
@@ -66,9 +66,9 @@ ENT.ClientProps["schemes"] = {
     end,
 }
 ENT.ClientProps["lamps1"] = {
-    model = "models/metrostroi_train/81-717/lamps_type1_int.mdl",
-    pos = Vector(0,0,0),
-    ang = Angle(0,0,0),
+    model = "models/metrostroi_train/81-540b/minsk_lamp_type4_int.mdl",
+    pos = Vector(-30,0,0),
+    ang = Angle(0,90,0),
     hide=1.5,
 }
 ENT.ClientProps["body_additional"] = {
@@ -765,8 +765,8 @@ ENT.ClientProps["door3x0"] = {
     ang = Angle(0,90,0),
     hide = 2.0,
 }
-for i = 0,12 do
-    local b = 15--math.random()*15
+for i = 0,10 do
+    --[[ local b = 15--math.random()*15
     local g = 15--b+math.random()*(15-b)
     if math.random() > 0.4 then
         g = math.random()*15
@@ -774,34 +774,34 @@ for i = 0,12 do
     else
         g = 15
         b = -10+math.random()*25
-    end
-    ENT.ClientProps["lamp1_"..i+1] = {
-        model = "models/metrostroi_train/81-717/lamps/lamp_typ1.mdl",
-        pos = Vector(394.5- 66.65*i, 0, 67.608),
-        ang = Angle(0,0,0),
-        color = Color(255,235+g,235+b),
-        hideseat = 1.1,
-    }
-end
-for i = 0,26 do
-    --[[local r = 15--math.random()*15
-    local g = 15--b+math.random()*(15-b)
-    if math.random() > 0.4 then
-        r = math.random()*15
-        g = r
-    else
-        r = 15
-        g = -20+math.random()*20
     end--]]
-    ENT.ClientProps["lamp2_"..i+1] = {
-        model = "models/metrostroi_train/81-717/lamps/lamp_typ2.mdl",
-        pos = Vector(354.1 - 32.832*(i-2),0,68.2),
-        ang = Angle(0,0,0),
-        --color = Color(245+r,228+g,189),
+    ENT.ClientProps["lamp1_"..i+1] = {
+        model = "models/metrostroi_train/81-540b/minsk_lamp_type4_glow.mdl",
+        pos = Vector(389.3 - 79.13*i,0,70.5),
+        ang = Angle(0,90,0),
+        --color = Color(255,235+g,235+b),
         color = Color(255,255,255),
         hideseat = 1.1,
     }
 end
+-- for i = 0,12 do
+--     local b = 15--math.random()*15
+--     local g = 15--b+math.random()*(15-b)
+--     if math.random() > 0.4 then
+--         g = math.random()*15
+--         b = g
+--     else
+--         g = 15
+--         b = -10+math.random()*25
+--     end
+--     ENT.ClientProps["lamp1_"..i+1] = {
+--         model = "models/metrostroi_train/81-540b/minsk_lamp_type4_glow.mdl",
+--         pos = Vector(394.5- 66.65*i, 0, 67.608),
+--         ang = Angle(0,0,0),
+--         color = Color(255,235+g,235+b),
+--         hideseat = 1.1,
+--     }
+-- end
 for i=0,4 do
     ENT.ClientProps["TrainNumberL"..i] = {
         model = "models/metrostroi_train/81-714_mmz/bortnumber_" .. i .. ".mdl",
@@ -874,7 +874,7 @@ function ENT:Think()
     end
     if not self.PassSchemesDone and IsValid(self.ClientEnts.schemes) then
         local scheme = Metrostroi.Skins["717_new_schemes"] and Metrostroi.Skins["717_new_schemes"][self.Scheme]
-        self.ClientEnts.schemes:SetSubMaterial(1,scheme and scheme[1])
+        self.ClientEnts.schemes:SetSubMaterial(0,scheme and scheme[1])
         self.PassSchemesDone = true
     end
 
