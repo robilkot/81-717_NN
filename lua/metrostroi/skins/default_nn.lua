@@ -6,6 +6,7 @@ Metrostroi.AddSkin("train","Def_717NNDef",{
         ["p_b_gray"] = "models/metrostroi_train/NN-717/p_b_gray",
         ["p_m_classic"] = "models/metrostroi_train/NN-717/p_m_classic",
         ["p_ars"] = "models/metrostroi_train/NN-717/p_ars",
+		["interior_mvm"] = "models/metrostroi_train/NN-717/interior_mvm_gray",
     },
     postfunc = function(ent)
         local bright = math.Rand(1,1.1)
