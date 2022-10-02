@@ -336,7 +336,7 @@ function ENT:InitializeSystems()
     -- Панель управления 81-710
     self:LoadSystem("Panel","81_714_Panel")
     -- Пневмосистема 81-710
-    self:LoadSystem("Pneumatic","81_717_Pneumatic",{br013_1 = true})
+    self:LoadSystem("Pneumatic","81_717_NN_Pneumatic",{br013_1 = true})
     -- Everything else
     self:LoadSystem("Battery")
     self:LoadSystem("PowerSupply","BPSN")
@@ -348,19 +348,17 @@ function ENT:PostInitializeSystems()
 
     local pneumo = self.Pneumatic
 
-    local start = 0.01
+    local start = math.Rand(1.0, 1.2)
 
     pneumo.DoorSpeedMain = -math.Rand(start,math.Rand(start+0.1,start+0.2))
     for i=1,#pneumo.LeftDoorSpeed do
-        pneumo.LeftDoorSpeed[i] = -math.Rand(start-0.005,start+0.01)/2
-        pneumo.RightDoorSpeed[i] = -math.Rand(start-0.005,start+0.01)/2
-        -- if math.random() > 0.7 then
-        --     pneumo.LeftDoorSpeed[i] = math.Rand(pneumo.DoorSpeedMain-0.1,pneumo.DoorSpeedMain+0.2)
-        --     pneumo.RightDoorSpeed[i] = math.Rand(pneumo.DoorSpeedMain-0.1,pneumo.DoorSpeedMain+0.2)
-        -- else
-        --     pneumo.LeftDoorSpeed[i] = math.Rand(pneumo.DoorSpeedMain-0.1,pneumo.DoorSpeedMain+0.1)
-        --     pneumo.RightDoorSpeed[i] = math.Rand(pneumo.DoorSpeedMain-0.1,pneumo.DoorSpeedMain+0.1)
-        -- end
+        if math.random() > 0.7 then
+            pneumo.LeftDoorSpeed[i] = math.Rand(pneumo.DoorSpeedMain-0.1,pneumo.DoorSpeedMain+0.2)
+            pneumo.RightDoorSpeed[i] = math.Rand(pneumo.DoorSpeedMain-0.1,pneumo.DoorSpeedMain+0.2)
+        else
+            pneumo.LeftDoorSpeed[i] = math.Rand(pneumo.DoorSpeedMain-0.1,pneumo.DoorSpeedMain+0.1)
+            pneumo.RightDoorSpeed[i] = math.Rand(pneumo.DoorSpeedMain-0.1,pneumo.DoorSpeedMain+0.1)
+        end
     end
 end
 -- LVZ,Dot5,NewSeats,NewBL,PassTexture,MVM
