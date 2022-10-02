@@ -3306,15 +3306,14 @@ function ENT:DrawPost(special)
 
     if distance < 4096 and self:GetNW2Bool("VB", false) then
         self:DrawOnPanel("LastStationScreen", function(...)
-
-
             draw.NoTexture()
 
             local str = self:GetNW2String("LastStation", "ОБКАТКА")
 
+            surface.SetFont("Metrostroi_717_NN_RouteNumber")
+
             local w, h = surface.GetTextSize(str)
 
-            surface.SetFont("Metrostroi_717_NN_RouteNumber")
             surface.SetTextPos(-w/2, 0)
             surface.SetTextColor(0,255,0)
             surface.DrawText(str)
@@ -3322,10 +3321,16 @@ function ENT:DrawPost(special)
 
         self:DrawOnPanel("RouteNumberScreen", function(...)
             draw.NoTexture()
-            surface.SetTextPos(0, 0)
+
+            local str = self.RouteNumber.Number or "61"
+
             surface.SetFont("Metrostroi_717_NN_RouteNumber")
+
+            local w, h = surface.GetTextSize(str)
+
+            surface.SetTextPos(-w/2, 0)
             surface.SetTextColor(0,255,0)
-            surface.DrawText(self.RouteNumber.Number or "61")
+            surface.DrawText(str)
         end)
 
     end
