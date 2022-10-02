@@ -942,7 +942,7 @@ ENT.ButtonMap["RRI"] = {
 }
 
 ENT.ButtonMap["RouteNumberScreen"] = {
-    pos = Vector(460,-26.7,39),
+    pos = Vector(460,-22.42,39.9),
     ang = Angle(0,90,90.0),
     width = 512,
     height = 128,
@@ -951,7 +951,7 @@ ENT.ButtonMap["RouteNumberScreen"] = {
     nohide = true,
 }
 ENT.ButtonMap["LastStationScreen"] = {
-    pos = Vector(460,4.5,39),
+    pos = Vector(460,5.2,37.9),
     ang = Angle(0,90,90.0),
     width = 512,
     height = 128,
@@ -3277,10 +3277,28 @@ function ENT:Think()
 end
 
 surface.CreateFont("Metrostroi_717_NN_RouteNumber", {
+	font = "Advanced LED Board-7", --  Use the font-name which is shown to you by your operating system Font Viewer, not the file name
+	extended = false,
+	size = 135,
+	weight = 500,
+	blursize = 0,
+	scanlines = 0,
+	antialias = false,
+	underline = false,
+	italic = false,
+	strikeout = false,
+	symbol = false,
+	rotary = false,
+	shadow = false,
+	additive = false,
+	outline = false,
+} )
+
+surface.CreateFont("Metrostroi_717_NN_LastStation", {
 	font = "DS Dots", --  Use the font-name which is shown to you by your operating system Font Viewer, not the file name
 	extended = false,
-	size = 102,
-	weight = 500,
+	size = 78,
+	weight = 100,
 	blursize = 0,
 	scanlines = 0,
 	antialias = false,
@@ -3310,7 +3328,7 @@ function ENT:DrawPost(special)
 
             local str = self:GetNW2String("LastStation", "ОБКАТКА")
 
-            surface.SetFont("Metrostroi_717_NN_RouteNumber")
+            surface.SetFont("Metrostroi_717_NN_LastStation")
 
             local w, h = surface.GetTextSize(str)
 
