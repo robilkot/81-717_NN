@@ -235,7 +235,7 @@ ENT.ButtonMap["AirDistributor"] = {
 
 -- Battery panel
 ENT.ButtonMap["Battery"] = {
-    pos = Vector(-470.0,-10,50.6),
+    pos = Vector(-471,-15,50.35),
     ang = Angle(0,-90,180),
     width = 100,
     height = 100,
