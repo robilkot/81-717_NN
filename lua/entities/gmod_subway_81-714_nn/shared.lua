@@ -342,6 +342,27 @@ function ENT:InitializeSystems()
     self:LoadSystem("PowerSupply","BPSN")
     self:LoadSystem("Announcer","81_71_Announcer")
 end
+function ENT:PostInitializeSystems()
+
+    if true then return end
+
+    local pneumo = self.Pneumatic
+
+    local start = 0.01
+
+    pneumo.DoorSpeedMain = -math.Rand(start,math.Rand(start+0.1,start+0.2))
+    for i=1,#pneumo.LeftDoorSpeed do
+        pneumo.LeftDoorSpeed[i] = -math.Rand(start-0.005,start+0.01)/2
+        pneumo.RightDoorSpeed[i] = -math.Rand(start-0.005,start+0.01)/2
+        -- if math.random() > 0.7 then
+        --     pneumo.LeftDoorSpeed[i] = math.Rand(pneumo.DoorSpeedMain-0.1,pneumo.DoorSpeedMain+0.2)
+        --     pneumo.RightDoorSpeed[i] = math.Rand(pneumo.DoorSpeedMain-0.1,pneumo.DoorSpeedMain+0.2)
+        -- else
+        --     pneumo.LeftDoorSpeed[i] = math.Rand(pneumo.DoorSpeedMain-0.1,pneumo.DoorSpeedMain+0.1)
+        --     pneumo.RightDoorSpeed[i] = math.Rand(pneumo.DoorSpeedMain-0.1,pneumo.DoorSpeedMain+0.1)
+        -- end
+    end
+end
 -- LVZ,Dot5,NewSeats,NewBL,PassTexture,MVM
 ENT.NumberRanges = {
 

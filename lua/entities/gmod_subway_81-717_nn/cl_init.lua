@@ -3022,6 +3022,7 @@ function ENT:Think()
     --self:InitializeSounds()
     if not self.DoorStates then self.DoorStates = {} end
     if not self.DoorLoopStates then self.DoorLoopStates = {} end
+    
     for i=0,3 do
         for k=0,1 do
             local st = k==1 and "DoorL" or "DoorR"
@@ -3052,7 +3053,7 @@ function ENT:Think()
                 dlo = math.abs(state-(self.Anims[n_l] and self.Anims[n_l].oldival or 0))
                 if dlo <= 0 and self.Anims[n_l].oldspeed then dlo = self.Anims[n_l].oldspeed/14 end
             end
-
+            
             self:Animate(n_l,state,0,0.95,dlo*14,false)--0.8 + (-0.2+0.4*math.random()),0)
             --self:Animate(n_r,state,0,1,dlo*14,false)--0.8 + (-0.2+0.4*math.random()),0)
         end

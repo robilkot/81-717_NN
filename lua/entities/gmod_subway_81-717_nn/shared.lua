@@ -829,6 +829,25 @@ function ENT:PostInitializeSystems()
     self.Electric:TriggerInput("X2PS",0)
     self.Electric:TriggerInput("HaveVentilation",1)
     self.KRU:TriggerInput("LockX3",1)
+
+    if true then return end
+
+    local pneumo = self.Pneumatic
+
+    local start = 0.01
+
+    pneumo.DoorSpeedMain = -math.Rand(start,math.Rand(start+0.1,start+0.2))
+    for i=1,#pneumo.LeftDoorSpeed do
+        pneumo.LeftDoorSpeed[i] = -math.Rand(start-0.005,start+0.01)/2
+        pneumo.RightDoorSpeed[i] = -math.Rand(start-0.005,start+0.01)/2
+        -- if math.random() > 0.7 then
+        --     pneumo.LeftDoorSpeed[i] = math.Rand(pneumo.DoorSpeedMain-0.1,pneumo.DoorSpeedMain+0.2)
+        --     pneumo.RightDoorSpeed[i] = math.Rand(pneumo.DoorSpeedMain-0.1,pneumo.DoorSpeedMain+0.2)
+        -- else
+        --     pneumo.LeftDoorSpeed[i] = math.Rand(pneumo.DoorSpeedMain-0.1,pneumo.DoorSpeedMain+0.1)
+        --     pneumo.RightDoorSpeed[i] = math.Rand(pneumo.DoorSpeedMain-0.1,pneumo.DoorSpeedMain+0.1)
+        -- end
+    end
 end
 ---------------------------------------------------
 -- Defined train information
