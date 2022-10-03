@@ -344,6 +344,7 @@ function ENT:InitializeSystems()
 end
 function ENT:PostInitializeSystems()
 
+    -- if CLIENT then return end
     if true then return end
 
     local pneumo = self.Pneumatic

@@ -830,6 +830,8 @@ function ENT:PostInitializeSystems()
     self.Electric:TriggerInput("HaveVentilation",1)
     self.KRU:TriggerInput("LockX3",1)
 
+    -- if CLIENT then return end
+
     if true then return end
 
     local pneumo = self.Pneumatic
