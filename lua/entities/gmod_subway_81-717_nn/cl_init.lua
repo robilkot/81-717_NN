@@ -741,13 +741,6 @@ ENT.ButtonMap["Block5_6"] = {
             sndvol = 1,snd = function(val) return val and "switch_on" or "switch_off" end,
             sndmin = 90,sndmax = 1e3,sndang = Angle(-90,0,0),
         }},
-        {ID = "VPToggle",x=429,y=181,radius=20,tooltip="",model = {
-            model = "models/metrostroi_train/81-710/ezh3_tumbler_pp250.mdl",ang = 180,z=-8,
-            var="VP",speed=16,
-            plomb = {model = "models/metrostroi_train/81/plomb.mdl",ang=270,x=-1,y=26,z=4,var="VPPl",ID="VPPl",},
-            sndvol = 1,snd = function(val) return val and "switch_on" or "switch_off" end,
-            sndmin = 90,sndmax = 1e3,sndang = Angle(-90,0,0),
-        }},
     }
 }
 
@@ -1552,25 +1545,6 @@ ENT.ButtonMap["Battery_C"] = {
             plomb = {model = "models/metrostroi_train/81/plomb_b.mdl",ang=230,x=-28,y=28,var="RC1Pl",ID="RC1Pl",z=-15,},
             sndvol = 0.8,snd = function(val) return val and "pak_on" or "pak_off" end,sndmin = 80,sndmax = 1e3/3,sndang = Angle(-90,0,0),
         }},
-    }
-}
-ENT.ButtonMap["VBD"] = {
-    pos = Vector(410.0,-56.15,36),
-    ang = Angle(0,90,90),
-    width = 50,
-    height = 125,
-    scale = 0.0625,
-    hideseat=0.2,
-
-    buttons = {
-        {ID = "1:UPPS_OnToggle",x=25,y=100,radius=25,tooltip="",model = {
-            model = "models/metrostroi_train/81-710/ezh3_tumbler_t2.mdl",ang = 180,z=-2,
-            plomb = {model = "models/metrostroi_train/81/plomb.mdl",ang=90,x=1,y=-26,var="UPPS_OnPl",ID="UPPS_OnPl",},
-            var="UPPS_On",speed=16,
-            sndvol = 1,snd = function(val) return val and "switchbl_on" or "switchbl_off" end,
-            sndmin = 90,sndmax = 1e3,sndang = Angle(-90,0,0),
-        }},
-
     }
 }
 

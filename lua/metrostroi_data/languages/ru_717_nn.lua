@@ -3,8 +3,8 @@ return [[
 
 [ru]
 
-Entities.gmod_subway_81-717_nn.Name  = 81-717.5М Нижний Новгород
-Entities.gmod_subway_81-714_nn.Name  = 81-714.5М Нижний Новгород
+Entities.gmod_subway_81-717_nn.Name  = 81-717 Нижний Новгород
+Entities.gmod_subway_81-714_nn.Name  = 81-714 Нижний Новгород
 
 #Cameras:
 Train.717.Breakers  = Автоматические выключатели

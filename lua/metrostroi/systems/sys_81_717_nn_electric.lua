@@ -340,7 +340,7 @@ function TRAIN_SYSTEM:SolveAllInternalCircuits(Train,dT,firstIter)
 
         Train.ARS_RT:TriggerInput("Set",T[4]*RC1)
         ARS.DA = S["10AK"]*(KV["10AK-DA"]+Train.ARS_RT.Value)
-        Train.UPPS_VV.Power = S["7G"]*Train.UPPS_On.Value
+        Train.UPPS_VV.Power = 0
         Train.UPPS_VV.KB = Train.UPPS_VV.Power*(Train.KVT.Value+Train.PB.Value)
 
         Train:WriteTrainWire(92,ARS.DA*RC1*Train.BUM_RVD1.Value+S["7D"]*(1-RC1)*Train.A58.Value*Train.KAH.Value)
