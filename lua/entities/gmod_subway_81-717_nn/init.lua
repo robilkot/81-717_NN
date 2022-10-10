@@ -41,7 +41,6 @@ function ENT:Initialize()
         OtklBV = {true},
         RC1 = true,
         UOS = true,
-        VBD = true,
         UAVA = true,
         UPPS_On = true,
         Init = true,

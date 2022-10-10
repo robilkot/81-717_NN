@@ -1554,7 +1554,7 @@ ENT.ButtonMap["Battery_C"] = {
         }},
     }
 }
-ENT.ButtonMap["VBD_C"] = {
+ENT.ButtonMap["VBD"] = {
     pos = Vector(410.0,-56.15,36),
     ang = Angle(0,90,90),
     width = 50,
@@ -1563,13 +1563,6 @@ ENT.ButtonMap["VBD_C"] = {
     hideseat=0.2,
 
     buttons = {
-        {ID = "1:VBDToggle",x=25,y=25,radius=25,tooltip="",model = {
-            model = "models/metrostroi_train/81-710/ezh3_tumbler_t2.mdl",ang = 180,z=-2,
-            plomb = {model = "models/metrostroi_train/81/plomb.mdl",ang=90,x=1,y=-26,var="VBDPl",ID="VBDPl",},
-            var="VBD",speed=16,
-            sndvol = 1,snd = function(val) return val and "switchbl_on" or "switchbl_off" end,
-            sndmin = 90,sndmax = 1e3,sndang = Angle(-90,0,0),
-        }},
         {ID = "1:UPPS_OnToggle",x=25,y=100,radius=25,tooltip="",model = {
             model = "models/metrostroi_train/81-710/ezh3_tumbler_t2.mdl",ang = 180,z=-2,
             plomb = {model = "models/metrostroi_train/81/plomb.mdl",ang=90,x=1,y=-26,var="UPPS_OnPl",ID="UPPS_OnPl",},
@@ -1723,31 +1716,6 @@ ENT.ButtonMap["Battery_R"] = {
             var="UOS",speed=0.5,vmin=1,vmax=0.87,
             plomb = {model = "models/metrostroi_train/81/plomb_b.mdl",ang=0,x=25,y=28,var="UOSPl",ID="UOSPl",z=-15,},
             sndvol = 0.8,snd = function(val) return val and "pak_on" or "pak_off" end,sndmin = 80,sndmax = 1e3/3,sndang = Angle(-90,0,0),
-        }},
-    }
-}
-ENT.ButtonMap["VBD_R"] = {
-    pos = Vector(402,-18.05,15),
-    ang = Angle(0,180,90),
-    width = 50,
-    height = 125,
-    scale = 0.0625,
-    hideseat=0.2,
-
-    buttons = {
-        {ID = "2:VBDToggle",x=25,y=25,radius=25,tooltip="",model = {
-            model = "models/metrostroi_train/81-710/ezh3_tumbler_t2.mdl",ang = 180,z=-2,
-            plomb = {model = "models/metrostroi_train/81/plomb.mdl",ang=90,x=1,y=-26,var="VBDPl",ID="VBDPl",},
-            var="VBD",speed=16,
-            sndvol = 1,snd = function(val) return val and "switchbl_on" or "switchbl_off" end,
-            sndmin = 90,sndmax = 1e3,sndang = Angle(-90,0,0),
-        }},
-        {ID = "2:UPPS_OnToggle",x=25,y=100,radius=25,tooltip="",model = {
-            model = "models/metrostroi_train/81-710/ezh3_tumbler_t2.mdl",ang = 180,z=-2,
-            plomb = {model = "models/metrostroi_train/81/plomb.mdl",ang=90,x=1,y=-26,var="UPPS_OnPl",ID="UPPS_OnPl",},
-            var="UPPS_On",speed=16,
-            sndvol = 1,snd = function(val) return val and "switchbl_on" or "switchbl_off" end,
-            sndmin = 90,sndmax = 1e3,sndang = Angle(-90,0,0),
         }},
     }
 }
@@ -2881,13 +2849,11 @@ function ENT:Think()
     local mask22 = false
     self:HidePanel("Battery_C",dot5)
     self:HidePanel("AV_C",dot5)
-    self:HidePanel("VBD_C",dot5)
     self:HidePanel("HelperPanel_C",dot5)
     self:HidePanel("BZOS_C",dot5)
     self:HidePanel("CabVent_C",dot5)
     self:HidePanel("Battery_R",not dot5)
     self:HidePanel("AV_R",not dot5)
-    self:HidePanel("VBD_R",not dot5)
     self:HidePanel("CabVent_R",not dot5)
     self:HidePanel("HelperPanel_R",not dot5)
     self:HidePanel("BZOS_R",not dot5)
